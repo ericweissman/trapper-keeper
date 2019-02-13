@@ -4,8 +4,11 @@ export class NoteForm extends Component {
   constructor() {
     super()
     this.state = {
-      title: '',
-      items: [{ id: Date.now(), description: '' }]
+      note: {
+        title: '',
+        id: Date.now()
+      },
+      items: []
     }
   }
 
@@ -14,7 +17,7 @@ export class NoteForm extends Component {
   handleOnChange = (e) => {
     const { name, value } = e.target
     if (name === 'title') {
-      this.setState({ title: value })
+      this.setState({ note: {title: value} })
     } else {
       const newItems = this.state.items.map(item => {
         if (item.id === parseInt(name)) {
@@ -28,7 +31,7 @@ export class NoteForm extends Component {
 
   handleAddItem = (e) => {
     e.preventDefault()
-    this.setState({ items: [...this.state.items, { id: Date.now(), description: '' }] })
+    this.setState({ items: [...this.state.items, { id: Date.now(), description: '', noteID: this.state.note.id }] })
   }
 
   render() {
