@@ -11,15 +11,20 @@ export class NoteForm extends Component {
       items: []
     }
   }
+  
+  componentDidMount = () => {
+    this.setState({ items: [{ id: Date.now(), description: '', noteID: this.state.note.id }] })
+  }
 
   //  this.props.items || 
 
   handleOnChange = (e) => {
     const { name, value } = e.target
+    const { items, note } = this.state
     if (name === 'title') {
-      this.setState({ note: {title: value} })
+      this.setState({ note: {title: value, id: note.id} })
     } else {
-      const newItems = this.state.items.map(item => {
+      const newItems = items.map(item => {
         if (item.id === parseInt(name)) {
           item.description = value
         }
@@ -30,8 +35,9 @@ export class NoteForm extends Component {
   }
 
   handleAddItem = (e) => {
+    const { items, note } = this.state;
     e.preventDefault()
-    this.setState({ items: [...this.state.items, { id: Date.now(), description: '', noteID: this.state.note.id }] })
+    this.setState({ items: [...items, { id: Date.now(), description: '', noteID: note.id }] })
   }
 
   render() {
