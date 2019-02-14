@@ -36,8 +36,8 @@ export class NoteForm extends Component {
   }
 
   handleAddItem = (e) => {
-    const { items, note } = this.state;
     e.preventDefault()
+    const { items, note } = this.state;
     this.setState({ items: [...items, { id: Date.now(), description: '', noteID: note.id }] })
   }
 
