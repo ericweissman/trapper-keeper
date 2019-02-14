@@ -11,3 +11,13 @@ export const setItems = (items) => ({
   type: 'SET_ITEMS',
   items,
 })
+
+export const addNote = (note) => ({
+  type: 'ADD_NOTE',
+  note,
+})
+
+export const addNoteItems = (items) => ({
+  type: 'ADD_NOTE_ITEMS',
+  items,
+})

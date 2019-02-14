@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {addNote, addNoteItems} from '../../actions'
 
 export class NoteForm extends Component {
   constructor() {
@@ -40,6 +41,17 @@ export class NoteForm extends Component {
     this.setState({ items: [...items, { id: Date.now(), description: '', noteID: note.id }] })
   }
 
+  handleSubmit = async (e) => {
+    e.preventDefault()
+    const { id, title } = this.state.note;
+    const { items } = this.state;
+    await fetch('http://localhost:3001/api/v1/notes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, title, items })
+    })
+  }
+
   render() {
     const { items, title } = this.state
     return (
@@ -50,9 +62,16 @@ export class NoteForm extends Component {
             return <input placeholder='item' onChange={this.handleOnChange} name={item.id} value={items[i].description} key={item.id} ></input>
           })
         }
-        <button onClick={this.handleAddItem}>Add Item</button>
+        {/*NEED TO FIX THIS TO BE A BUTTON AND CHANGE THE BEHAVIOR */}
+        <div onClick={this.handleAddItem}>Add Item</div>
+        <button onClick={this.handleSubmit}>SAVE</button>
       </form>
     )
   }
 }
+export const mapDispatchToProps = (dispatch) => ({
+  addNote: (note) => dispatch(addNote(note)),
+  addNoteItems: (items) => dispatch(addNoteItems(items))
+})
+
 export default NoteForm

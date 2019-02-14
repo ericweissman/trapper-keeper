@@ -11,8 +11,6 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      notes: [],
-      items: [],
       loading: true,
     }
   }
