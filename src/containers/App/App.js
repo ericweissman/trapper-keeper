@@ -5,8 +5,27 @@ import Home from '../../components/Home/Home'
 import NotFound from '../../components/NotFound/NotFound'
 import NoteForm from '../NoteForm/NoteForm'
 import './App.scss';
+import {setItems, setNotes} from '../../actions'
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      notes: [],
+      items: [],
+      loading: true,
+    }
+  }
+
+  componentDidMount = async () => {
+
+    const { setItems, setNotes } = this.props;
+    let response = await fetch('http://localhost:3001/api/v1/notes')
+    let result = await response.json();
+    setItems(result.items)
+    setNotes(result.notes)
+  }
+
   render() {
     return (
       <div className="App">
@@ -25,4 +44,14 @@ class App extends Component {
   }
 }
 
-export default App;
+export const mapStateToProps = (state) => ({
+  notes: state.notes,
+  items: state.items,
+})
+
+export const mapDispatchToProps = (dispatch) => ({
+  setItems: (items) => dispatch(setItems(items)),
+  setNotes: (notes) => dispatch(setNotes(notes))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
