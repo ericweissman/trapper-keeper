@@ -27,12 +27,3 @@ export const postNote = (url, {id, title, items}) => {
     }
   }
 }
-
-
-// const { id, title } = this.state.note;
-// const { items } = this.state;
-// await fetch('http://localhost:3001/api/v1/notes', {
-//   method: 'POST',
-//   headers: { 'Content-Type': 'application/json' },
-//   body: JSON.stringify({ id, title, items })
-// })
