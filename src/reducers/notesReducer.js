@@ -7,9 +7,10 @@ export const notesReducer = (state = [], action) => {
     case 'DELETE_NOTE_SUCCESS':
       return state.filter(note => note.id !== action.id)
     case 'EDIT_NOTE_SUCCESS':
-      return state.map(note => {
-        return note.id !== action.note.id ? note : action.note
-      })
+      // return state.map(note => {
+      //   return note.id !== action.note.id ? note : action.note
+      // })
+      return state;
     default:
       return state;
   }
