@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import {addNote, addNoteItems} from '../../actions'
+import { connect } from 'react-redux'
+import { postNote } from '../../thunks/postNote'
+import { Redirect } from 'react-router-dom'
 
 export class NoteForm extends Component {
   constructor() {
@@ -9,7 +11,8 @@ export class NoteForm extends Component {
         title: '',
         id: Date.now()
       },
-      items: []
+      items: [],
+      redirect: false
     }
   }
   
@@ -41,14 +44,14 @@ export class NoteForm extends Component {
     this.setState({ items: [...items, { id: Date.now(), description: '', noteID: note.id }] })
   }
 
-  handleSubmit = async (e) => {
+  handleSubmit = (e) => {
     e.preventDefault()
     const { id, title } = this.state.note;
     const { items } = this.state;
-    await fetch('http://localhost:3001/api/v1/notes', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, title, items })
+    const url = 'http://localhost:3001/api/v1/notes'
+    this.props.postNote(url, {id, title, items})
+     this.setState({
+      redirect: true
     })
   }
 
@@ -64,14 +67,20 @@ export class NoteForm extends Component {
         }
         {/*NEED TO FIX THIS TO BE A BUTTON AND CHANGE THE BEHAVIOR */}
         <div onClick={this.handleAddItem}>Add Item</div>
-        <button onClick={this.handleSubmit}>SAVE</button>
+        {
+          this.state.redirect && <Redirect to='/'/>
+        }
+          <button onClick={this.handleSubmit}>SAVE</button>
+
+        
       </form>
     )
   }
 }
 export const mapDispatchToProps = (dispatch) => ({
-  addNote: (note) => dispatch(addNote(note)),
-  addNoteItems: (items) => dispatch(addNoteItems(items))
-})
+  // addNote: (note) => dispatch(addNote(note)),
+  // addNoteItems: (items) => dispatch(addNoteItems(items))
+  postNote: (url, action) => dispatch(postNote(url, action))
+ })
 
-export default NoteForm
+export default connect(null, mapDispatchToProps)(NoteForm)
