@@ -1,29 +1,24 @@
 import React, { Component } from 'react';
 import { Switch, Link, Route, withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
-import Home from '../../components/Home/Home'
 import NotFound from '../../components/NotFound/NotFound'
 import NoteForm from '../NoteForm/NoteForm'
 import NoteArea from '../NoteArea/NoteArea'
 import EditForm from '../EditForm/EditForm'
 import './App.scss';
-import {setItems, setNotes} from '../../actions'
+import { fetchNotes } from '../../thunks/fetchNotes'
 
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       loading: true,
     }
   }
 
   componentDidMount = async () => {
-
-    const { setItems, setNotes } = this.props;
-    let response = await fetch('http://localhost:3001/api/v1/notes')
-    let result = await response.json();
-    setItems(result.items)
-    setNotes(result.notes)
+    const url = 'http://localhost:3001/api/v1/notes'
+    this.props.fetchNotes(url)
   }
 
   render() {
@@ -44,7 +39,6 @@ class App extends Component {
           }}/>
           <Route component= {NotFound } />
         </Switch>
-        {/* <NoteArea /> */}
       </div>
     );
   }
@@ -53,11 +47,12 @@ class App extends Component {
 export const mapStateToProps = (state) => ({
   notes: state.notes,
   items: state.items,
+  isLoading: state.isLoading,
+  error: state.error
 })
 
 export const mapDispatchToProps = (dispatch) => ({
-  setItems: (items) => dispatch(setItems(items)),
-  setNotes: (notes) => dispatch(setNotes(notes))
+  fetchNotes: (url) => dispatch(fetchNotes(url))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
