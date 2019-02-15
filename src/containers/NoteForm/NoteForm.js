@@ -20,13 +20,11 @@ export class NoteForm extends Component {
     this.setState({ items: [{ id: Date.now(), description: '', noteID: this.state.note.id }] })
   }
 
-  //  this.props.items || 
-
   handleOnChange = (e) => {
     const { name, value } = e.target
     const { items, note } = this.state
     if (name === 'title') {
-      this.setState({ note: {title: value, id: note.id} })
+      this.setState({ note: { title: value, id: note.id } })
     } else {
       const newItems = items.map(item => {
         if (item.id === parseInt(name)) {
@@ -71,16 +69,12 @@ export class NoteForm extends Component {
           this.state.redirect && <Redirect to='/'/>
         }
           <button onClick={this.handleSubmit}>SAVE</button>
-
-        
       </form>
     )
   }
 }
 export const mapDispatchToProps = (dispatch) => ({
-  // addNote: (note) => dispatch(addNote(note)),
-  // addNoteItems: (items) => dispatch(addNoteItems(items))
-  postNote: (url, action) => dispatch(postNote(url, action))
+  postNote: (url, note) => dispatch(postNote(url, note))
  })
 
 export default connect(null, mapDispatchToProps)(NoteForm)

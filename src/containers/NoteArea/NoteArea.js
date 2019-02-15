@@ -1,15 +1,11 @@
 import React, { Component } from 'react'
 import NoteCard from '../NoteCard/NoteCard'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 export class NoteArea extends Component {
-  constructor() {
-    super()
-  }
 
   render() {
     const { items, notes } = this.props
-
     const noteCards = notes.map(note => {
       const noteItems = items.filter(item => item.noteID === note.id)
 

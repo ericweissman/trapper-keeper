@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Link, Route, withRouter, Redirect } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import NotFound from '../../components/NotFound/NotFound'
 import NoteForm from '../NoteForm/NoteForm'
@@ -29,10 +29,9 @@ class App extends Component {
           <Route exact path='/' component={NoteArea}/>
           <Route path='/new-note' component={NoteForm}/>
           <Route path='/notes/:id' render={({ match }) => {
-            console.log('hi')
               const { id } = match.params
-              const note = this.props.notes.find(note => note.id == id)
-              const items = this.props.items.filter(item => item.noteID == id )
+              const note = this.props.notes.find(note => note.id === parseInt(id))
+            const items = this.props.items.filter(item => item.noteID === parseInt(id) )
               if(note) {
                 return <EditForm note={note} items={items}/>
               }

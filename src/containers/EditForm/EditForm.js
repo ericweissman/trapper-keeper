@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { deleteNote } from '../../thunks/deleteNote'
 import { editNote } from '../../thunks/editNote'
 
@@ -28,12 +28,20 @@ export class EditForm extends Component {
   }
 
   handleChange = (e) => {
-    const { id, title } = this.state.note
-    const { items } = this.state
+    const { id } = this.state.note
     const { name, value } = e.target
-    this.setState({
-      note: {title: value, id},
-    })
+    const { items } = this.state
+    if (name === 'title') {
+      this.setState({ note: { title: value, id } })
+    } else {
+      const newItems = items.map(item => {
+        if (item.id === parseInt(name)) {
+          item.description = value
+        }
+        return item
+      })
+      this.setState({ items: newItems })
+    }
   }
 
   handleSubmit = (e) => {
@@ -45,7 +53,6 @@ export class EditForm extends Component {
     this.setState({
       redirect: true,
     })
-    this.props.edits()
   }
 
   render() {
@@ -69,8 +76,6 @@ export class EditForm extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  // deleteNote: (id) => dispatch(deleteNote(id)),
-  // deleteNoteItems: (noteID) => dispatch(deleteNoteItems(noteID)),
   deleteNote: (url, id) => dispatch(deleteNote(url, id)),
   editNote: (url, note) => dispatch(editNote(url, note))
 })

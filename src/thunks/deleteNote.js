@@ -6,9 +6,7 @@ export const deleteNote = (url, id) => {
       dispatch(isLoading(true))
       const response = await fetch(url, {
         method: 'DELETE',
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({id})
       })
       if(!response.ok) {

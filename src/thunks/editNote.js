@@ -6,9 +6,7 @@ export const editNote = (url, {id, title, items}) => {
       dispatch(isLoading(true))
       const response = await fetch(url, {
         method: 'PUT',
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title, items })
       })
       if(!response.ok) {

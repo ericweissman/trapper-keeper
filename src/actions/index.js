@@ -15,24 +15,21 @@ export const hasErrored = (message) => ({
 });
 
 //GET n SET ALL NOTES
-export const getNotesSuccess = (result) => ({
+export const getNotesSuccess = ({ notes, items }) => ({
   type: 'GET_NOTES_SUCCESS',
-  notes: result.notes,
-  items: result.items
+  notes,
+  items,
 })
-
 
 //ADD NOTE
-export const postNoteSuccess = (result) => ({
+export const postNoteSuccess = ({ id, title, items }) => ({
   type: 'POST_NOTE_SUCCESS',
   note: {
-    id: result.id,
-    title: result.title
+    id,
+    title,
   },
-  items: result.items,
+  items,
 })
-
-
 
 //DELETE NOTE
 export const deleteNoteSuccess = (id) => ({
@@ -41,11 +38,11 @@ export const deleteNoteSuccess = (id) => ({
 })
 
 //EDIT NOTE
-export const editNoteSuccess = (result) => ({
+export const editNoteSuccess = ({ id, title, items }) => ({
   type: 'EDIT_NOTE_SUCCESS',
   note: {
-    id: result.id,
-    title: result.title
+    id,
+    title,
   },
-  items: result.items
+  items,
 })
