@@ -58,7 +58,7 @@ export class EditForm extends Component {
   render() {
     const { title } = this.state.note
     const items = this.state.items.map(item => {
-      return <input value={item.description} />
+      return <input value={item.description} onChange={this.handleChange} key={item.id} />
     })
 
     return (
