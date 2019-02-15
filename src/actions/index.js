@@ -2,35 +2,50 @@
 //remove note
 //edit a note
 
-//GET NOTES
-export const setNotes = (notes) => ({
-  type: 'SET_NOTES',
-  notes,
+//Synchronous Actions
+
+export const isLoading = (bool) => ({
+  type: 'IS_LOADING',
+  isLoading: bool
+});
+
+export const hasErrored = (message) => ({
+  type: 'HAS_ERRORED',
+  message
+});
+
+//GET n SET ALL NOTES
+export const getNotesSuccess = (result) => ({
+  type: 'GET_NOTES_SUCCESS',
+  notes: result.notes,
+  items: result.items
 })
 
-export const setItems = (items) => ({
-  type: 'SET_ITEMS',
-  items,
-})
 
 //ADD NOTE
-export const addNote = (note) => ({
-  type: 'ADD_NOTE',
-  note,
+export const postNoteSuccess = (result) => ({
+  type: 'POST_NOTE_SUCCESS',
+  note: {
+    id: result.id,
+    title: result.title
+  },
+  items: result.items,
 })
 
-export const addNoteItems = (items) => ({
-  type: 'ADD_NOTE_ITEMS',
-  items,
-})
+
 
 //DELETE NOTE
-export const deleteNote = (id) => ({
-  type: 'DELETE_NOTE',
-  id,
+export const deleteNoteSuccess = (id) => ({
+  type: 'DELETE_NOTE_SUCCESS',
+  id
 })
 
-export const deleteNoteItems = (noteID) => ({
-  type: 'DELETE_NOTE_ITEMS',
-  noteID,
+//EDIT NOTE
+export const editNoteSuccess = (result) => ({
+  type: 'EDIT_NOTE_SUCCESS',
+  note: {
+    id: result.id,
+    title: result.title
+  },
+  items: result.items
 })
