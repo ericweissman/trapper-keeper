@@ -1,6 +1,5 @@
 import { fetchNotes } from '../fetchNotes'
 import { isLoading, hasErrored, getNotesSuccess } from '../../actions'
-import { itemsReducer } from '../../reducers/itemsReducer';
 
 describe('fetchNotes', () => {
 
