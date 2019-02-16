@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import NoteItem from '../NoteItem/NoteItem'
 import { Link } from 'react-router-dom'
 
 export class NoteCard extends Component {
 
   render() {
     const cardItems = this.props.noteItems.map(item => {
-      return <NoteItem item={item} key={item.id} />
+      return <p key={item.id}>{item.description}</p>
     })
 
     return (
