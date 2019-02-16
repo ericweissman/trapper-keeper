@@ -1,7 +1,6 @@
 export const itemsReducer = (state = [], action) => {
   switch (action.type) {
     case 'GET_NOTES_SUCCESS':
-    console.log(action)
       return action.items;
     case 'POST_NOTE_SUCCESS':
       return [...state, ...action.items]
