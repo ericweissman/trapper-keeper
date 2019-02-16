@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { deleteNote } from '../../thunks/deleteNote'
 import { editNote } from '../../thunks/editNote'
+import {NoteItem} from '../NoteItem/NoteItem'
 
 export class EditForm extends Component {
   constructor(props) {
@@ -27,21 +28,34 @@ export class EditForm extends Component {
     })
   }
 
-  handleChange = (e) => {
-    const { id } = this.state.note
+  handleItemDelete = (id) => {
+    let items = this.state.items.filter(item => item.id !== id)
+
+    this.setState({ items})
+  }
+
+  handleItemChange = (e) => {
     const { name, value } = e.target
     const { items } = this.state
-    if (name === 'title') {
-      this.setState({ note: { title: value, id } })
-    } else {
-      const newItems = items.map(item => {
-        if (item.id === parseInt(name)) {
-          item.description = value
-        }
-        return item
-      })
-      this.setState({ items: newItems })
-    }
+    const newItems = items.map(item => {
+      if (item.id === parseInt(name)) {
+        item.description = value
+      }
+      return item
+    })
+    this.setState({ items: newItems })
+  }
+
+  handleTitleChange = (e) => {
+    const { value } = e.target
+    const { id } = this.state.note
+    this.setState({ note: { title: value, id } })
+  }
+
+  handleAddItem = (e) => {
+    e.preventDefault()
+    const { items, note } = this.state;
+    this.setState({ items: [...items, { id: Date.now(), description: '', noteID: note.id }] })
   }
 
   handleSubmit = (e) => {
@@ -58,18 +72,19 @@ export class EditForm extends Component {
   render() {
     const { title } = this.state.note
     const items = this.state.items.map(item => {
-      return <input value={item.description} onChange={this.handleChange} key={item.id} />
+      return <NoteItem item={item} handleItemChange={this.handleItemChange} handleItemDelete={this.handleItemDelete} key={item.id} />
     })
 
     return (
       <div>
         <button onClick={this.handleDelete}>delete</button>
-        <input onChange={this.handleChange} name='title' value={title}/>
+        <input onChange={this.handleTitleChange} name='title' value={title}/>
         {items}
         <button onClick={this.handleSubmit}>Update Note</button>
         {
           this.state.redirect && <Redirect to='/'/>
         }
+        <div onClick={this.handleAddItem}>Add Item</div>
       </div>
     )
   }

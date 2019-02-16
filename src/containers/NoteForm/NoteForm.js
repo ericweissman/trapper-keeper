@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { postNote } from '../../thunks/postNote'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
+import { NoteItem } from '../NoteItem/NoteItem'
 
 export class NoteForm extends Component {
   constructor() {
@@ -15,25 +16,27 @@ export class NoteForm extends Component {
       redirect: false
     }
   }
-  
+
   componentDidMount = () => {
     this.setState({ items: [{ id: Date.now(), description: '', noteID: this.state.note.id }] })
   }
 
-  handleOnChange = (e) => {
+  handleItemChange = (e) => {
     const { name, value } = e.target
-    const { items, note } = this.state
-    if (name === 'title') {
-      this.setState({ note: { title: value, id: note.id } })
-    } else {
-      const newItems = items.map(item => {
-        if (item.id === parseInt(name)) {
-          item.description = value
-        }
-        return item
-      })
-      this.setState({ items: newItems })
-    }
+    const { items } = this.state
+    const newItems = items.map(item => {
+      if (item.id === parseInt(name)) {
+        item.description = value
+      }
+      return item
+    })
+    this.setState({ items: newItems })
+  }
+
+  handleTitleChange = (e) => {
+    const { value } = e.target
+    const { id } = this.state.note
+    this.setState({ note: { title: value, id } })
   }
 
   handleAddItem = (e) => {
@@ -47,34 +50,39 @@ export class NoteForm extends Component {
     const { id, title } = this.state.note;
     const { items } = this.state;
     const url = 'http://localhost:3001/api/v1/notes'
-    this.props.postNote(url, {id, title, items})
-     this.setState({
+    this.props.postNote(url, { id, title, items })
+    this.setState({
       redirect: true
     })
   }
 
   render() {
-    const { items, title } = this.state
+    let { items, title } = this.state
+    if (items.length === 0) {
+      items = [{id: -1, description: 'no items to display'}]
+      } 
+        
     return (
       <form>
-        <input placeholder='Title' onChange={this.handleOnChange} name='title' value={title}></input>
+        <Link to='/'><button>Go back</button></Link>
+        <input placeholder='Title' onChange={this.handleTitleChange} name='title' value={title}></input>
         {
           items.map((item, i) => {
-            return <input placeholder='item' onChange={this.handleOnChange} name={item.id} value={items[i].description} key={item.id} ></input>
+            return <NoteItem item={item} handleItemChange={this.handleItemChange} key={item.id} />
           })
         }
         {/*NEED TO FIX THIS TO BE A BUTTON AND CHANGE THE BEHAVIOR */}
         <div onClick={this.handleAddItem}>Add Item</div>
         {
-          this.state.redirect && <Redirect to='/'/>
+          this.state.redirect && <Redirect to='/' />
         }
-          <button onClick={this.handleSubmit}>SAVE</button>
+        <button onClick={this.handleSubmit}>SAVE</button>
       </form>
     )
   }
 }
 export const mapDispatchToProps = (dispatch) => ({
   postNote: (url, note) => dispatch(postNote(url, note))
- })
+})
 
 export default connect(null, mapDispatchToProps)(NoteForm)
