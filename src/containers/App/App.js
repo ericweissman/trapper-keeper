@@ -5,6 +5,7 @@ import NotFound from '../../components/NotFound/NotFound'
 import NoteForm from '../NoteForm/NoteForm'
 import NoteArea from '../NoteArea/NoteArea'
 import EditForm from '../EditForm/EditForm'
+import { Link } from 'react-router-dom'
 import './App.scss';
 import { fetchNotes } from '../../thunks/fetchNotes'
 
@@ -25,18 +26,22 @@ class App extends Component {
     return (
       <div className="App">
         <h1>TrapperKeeper</h1>
+        {
+          this.props.location.pathname === '/' &&
+          <Link to='/new-note'>ADD NEW NOTE</Link>
+        }
         <Switch>
-          <Route exact path='/' component={NoteArea}/>
-          <Route path='/new-note' component={NoteForm}/>
+          <Route exact path='/' component={NoteArea} />
+          <Route path='/new-note' component={NoteForm} />
           <Route path='/notes/:id' render={({ match }) => {
-              const { id } = match.params
-              const note = this.props.notes.find(note => note.id === parseInt(id))
-            const items = this.props.items.filter(item => item.noteID === parseInt(id) )
-              if(note) {
-                return <EditForm note={note} items={items}/>
-              }
-          }}/>
-          <Route component= {NotFound } />
+            const { id } = match.params
+            const note = this.props.notes.find(note => note.id === parseInt(id))
+            const items = this.props.items.filter(item => item.noteID === parseInt(id))
+            if (note) {
+              return <EditForm note={note} items={items} />
+            }
+          }} />
+          <Route component={NotFound} />
         </Switch>
       </div>
     );
