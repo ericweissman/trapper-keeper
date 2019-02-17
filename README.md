@@ -1,68 +1,47 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# TraperKeeper
+#### TrapperKeeper is a React app that utilizes Redux and React Router to create an intuitive note-keeping app, similar to Google Keep.
 
-## Available Scripts
+## Installation Steps (Back End)
+- Clone down backend repo: ```https://github.com/ericweissman/trapper-keeper-be.git```
+- Install dependencies : ```npm install```
+- Start Local Host 3001: ```npm start```
+- For testing suite: ```npm test```
 
-In the project directory, you can run:
+## Installation Steps (Back End)
+- Clone this repo: ```https://github.com/hillstew/fe-movie-tracker.git```
+- Install dependencies: ```npm install```
+- Start Local Host 3000: ```npm start```
+- For testing suite: ```npm test```
 
-### `npm start`
+## Background/About
+This application was our first attempt at creating and managing a backend to support our frontend app. We designed the backend API endpoints using Node.js and Express. We are utilizing the backend to keep track of the user's notes and associated items. On the frontend, we designed the app using React, Redux and React Router to create an easy-to-use interface that allows users to create and keep track of tasks. 
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Primary Technologies Used - Front End
+- React
+- Redux
+- React Router
+- SCSS
+- Jest
+- Enzyme
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
+## Primary Technologies Used - Back End
+- Node.js
+- Express
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Screenshots & Wireframes
+- Coming Soon
 
-### `npm run build`
+## Next Steps
+#### Future iterations of the project could include:
+- Drag and Drop functionality for note items
+- Allow users to adjust color of note
+- Allow users to save without clicking Save button
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Contributors
+[Matthew Foxwell](https://github.com/foxwellm)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[Travis Gee](https://github.com/geet084)
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[Eric Weissman](https://github.com/ericweissman)
