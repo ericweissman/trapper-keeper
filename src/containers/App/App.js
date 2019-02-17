@@ -32,13 +32,16 @@ class App extends Component {
         }
         <Switch>
           <Route exact path='/' component={NoteArea} />
-          <Route path='/new-note' component={NoteForm} />
+          <Route path='/new-note' render={() => {
+            const note = { title: '', id: Date.now() }
+            return <NoteForm note={note} items={[]} isEdit={false}/>
+          }} />
           <Route path='/notes/:id' render={({ match }) => {
             const { id } = match.params
             const note = this.props.notes.find(note => note.id === parseInt(id))
             const items = this.props.items.filter(item => item.noteID === parseInt(id))
             if (note) {
-              return <EditForm note={note} items={items} />
+              return <NoteForm note={note} items={items} isEdit={true}/>
             }
           }} />
           <Route component={NotFound} />
