@@ -37,7 +37,7 @@ describe('itemsReducer', () => {
     const initialState = [{}, {}, { id: 1, description: 'New Item', noteID: 30 }]
     const expected = [{}, {}]
     //execution
-    const result = itemsReducer(initialState, actions.deleteNoteSuccess(1))
+    const result = itemsReducer(initialState, actions.deleteNoteSuccess(30))
     //expectation
     expect(result).toEqual(expected)
   })
