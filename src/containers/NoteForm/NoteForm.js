@@ -5,10 +5,7 @@ import { Redirect, Link } from 'react-router-dom'
 import { NoteItem } from '../NoteItem/NoteItem'
 import { editNote } from '../../thunks/editNote'
 import { deleteNote } from '../../thunks/deleteNote'
-
-
 let shortID = require('short-id');
-
 
 export class NoteForm extends Component {
   constructor(props) {
@@ -76,7 +73,7 @@ export class NoteForm extends Component {
     this.setState({ redirect: true })
   }
 
-  handleDelete = async () => {
+  handleDelete = () => {
     const { id } = this.state.note
     const url = `http://localhost:3001/api/v1/notes/${id}`
     this.props.deleteNote(url, id)
