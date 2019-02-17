@@ -42,6 +42,9 @@
       "!src/index.js",
       "!src/serviceWorker.js",
       "!src/setupTest.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
     ]
   }
 }
