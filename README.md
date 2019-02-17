@@ -1,4 +1,4 @@
-# TraperKeeper
+# TrapperKeeper
 #### TrapperKeeper is a React app that utilizes Redux and React Router to create an intuitive note-keeping app, similar to Google Keep.
 
 ## Installation Steps (Back End)
@@ -8,7 +8,7 @@
 - For testing suite: ```npm test```
 
 ## Installation Steps (Back End)
-- Clone this repo: ```https://github.com/hillstew/fe-movie-tracker.git```
+- Clone this repo: ```https://github.com/ericweissman/trapper-keeper-be.git```
 - Install dependencies: ```npm install```
 - Start Local Host 3000: ```npm start```
 - For testing suite: ```npm test```
