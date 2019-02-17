@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import NotFound from '../../components/NotFound/NotFound'
 import NoteForm from '../NoteForm/NoteForm'
 import NoteArea from '../NoteArea/NoteArea'
-import EditForm from '../EditForm/EditForm'
 import { Link } from 'react-router-dom'
 import './App.scss';
 import { fetchNotes } from '../../thunks/fetchNotes'
+let shortID = require('short-id');
+
 
 class App extends Component {
   constructor(props) {
@@ -33,13 +34,13 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={NoteArea} />
           <Route path='/new-note' render={() => {
-            const note = { title: '', id: Date.now() }
+            const note = { title: '', id: shortID.generate(), timestamp: Date.now() }
             return <NoteForm note={note} items={[]} isEdit={false}/>
           }} />
           <Route path='/notes/:id' render={({ match }) => {
             const { id } = match.params
-            const note = this.props.notes.find(note => note.id === parseInt(id))
-            const items = this.props.items.filter(item => item.noteID === parseInt(id))
+            const note = this.props.notes.find(note => note.id === id)
+            const items = this.props.items.filter(item => item.noteID === id)
             if (note) {
               return <NoteForm note={note} items={items} isEdit={true}/>
             }

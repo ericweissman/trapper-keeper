@@ -6,13 +6,18 @@ import { NoteItem } from '../NoteItem/NoteItem'
 import { editNote } from '../../thunks/editNote'
 import { deleteNote } from '../../thunks/deleteNote'
 
+
+let shortID = require('short-id');
+
+
 export class NoteForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
       note: {
         title: this.props.note.title,
-        id: this.props.note.id
+        id: this.props.note.id,
+        timestamp: this.props.note.timestamp,
       },
       items: this.props.items,
       isDeleted: false,
@@ -22,22 +27,33 @@ export class NoteForm extends Component {
 
   componentDidMount = () => {
     !this.props.isEdit && this.setState({
-      items: [{ id: Date.now(), description: '', noteID: this.state.note.id }]
+      items: [{ id: shortID.generate(), description: '', noteID: this.state.note.id, timestamp: Date.now(), isCompleted: false }]
     })
   }
 
   handleTitleChange = (e) => {
     const { value } = e.target
-    const { id } = this.state.note
-    this.setState({ note: { title: value, id } })
+    const { id, timestamp } = this.state.note
+    this.setState({ note: { title: value, id, timestamp } })
   }
 
   handleItemChange = (e) => {
     const { name, value } = e.target
     const { items } = this.state
     const newItems = items.map(item => {
-      if (item.id === parseInt(name)) {
+      if (item.id === name) {
         item.description = value
+      }
+      return item
+    })
+    this.setState({ items: newItems })
+  }
+
+  toggleComplete = (id) => {
+    const { items } = this.state
+    const newItems = items.map(item => {
+      if (item.id === id) {
+        item.isCompleted = !item.isCompleted
       }
       return item
     })
@@ -47,7 +63,7 @@ export class NoteForm extends Component {
   handleAddItem = (e) => {
     e.preventDefault()
     const { items, note } = this.state;
-    this.setState({ items: [...items, { id: Date.now(), description: '', noteID: note.id }] })
+    this.setState({ items: [...items, { id: shortID.generate(), description: '', noteID: note.id, timestamp: Date.now(), isCompleted: false }] })
   }
 
   handleSubmit = (e) => {
@@ -88,11 +104,21 @@ export class NoteForm extends Component {
         }
         <input onChange={this.handleTitleChange} name='title' value={title}></input>
         {
-          items.map((item, i) => {
-            return <NoteItem item={item} handleItemChange={this.handleItemChange} handleItemDelete={this.handleItemDelete} key={item.id} />
+          items.map((item) => {
+            if (!item.isCompleted) {
+              return <NoteItem item={item} handleItemChange={this.handleItemChange} handleItemDelete={this.handleItemDelete} key={item.id} toggleComplete={this.toggleComplete} />
+            }
           })
         }
         <div onClick={this.handleAddItem}>Add Item</div>
+        <section>
+          {
+            items.map((item) => {
+              if (item.isCompleted) {
+                return <NoteItem item={item} handleItemChange={this.handleItemChange} handleItemDelete={this.handleItemDelete} key={item.id} toggleComplete={this.toggleComplete} />              }
+            })
+          }
+        </section>
         <button onClick={this.handleSubmit}>SAVE</button>
       </form>
     )

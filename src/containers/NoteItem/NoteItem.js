@@ -1,6 +1,17 @@
 import React, { Component } from 'react'
 
 export class NoteItem extends Component {
+  // constructor() {
+  //   super()
+  //   this.state = {
+  //     isCompleted: false
+  //   }
+  // }
+
+  toggle = () => {
+    this.props.toggleComplete(this.props.item.id)
+  }
+
 
   deleteItem = () => {
     this.props.handleItemDelete(this.props.item.id)
@@ -10,7 +21,11 @@ export class NoteItem extends Component {
     const { handleItemChange } = this.props;  
     return (
       <div>
-        <input type="checkbox"/>
+        {
+          this.props.item.isCompleted ?  
+          <input checked type="checkbox" onClick={this.toggle} /> :
+          <input type="checkbox" onClick={this.toggle} />
+        }
         <input
           type="text"
           name={this.props.item.id}
