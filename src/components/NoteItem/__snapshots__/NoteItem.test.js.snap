@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoteItem should match the snapshot if item is checked 1`] = `
+<div>
+  <input
+    checked={true}
+    className="checkbox"
+    onChange={[Function]}
+    type="checkbox"
+  />
+  <input
+    className="item-input"
+    onChange={[MockFunction]}
+    type="text"
+  />
+  <button
+    className="item-del"
+    onClick={[Function]}
+  >
+    x
+  </button>
+</div>
+`;
+
+exports[`NoteItem should match the snapshot if item is unchecked 1`] = `
+<div>
+  <input
+    className="checkbox"
+    onChange={[Function]}
+    type="checkbox"
+  />
+  <input
+    className="item-input"
+    name={3}
+    onChange={[MockFunction]}
+    type="text"
+    value="some item"
+  />
+  <button
+    className="item-del"
+    onClick={[Function]}
+  >
+    x
+  </button>
+</div>
+`;
