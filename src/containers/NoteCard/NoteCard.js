@@ -18,13 +18,12 @@ export class NoteCard extends Component {
 
     return (
       <Link to={`/notes/${this.props.id}`}>
-        <div>
-          <h2>{this.props.title}</h2>
-          <div>
-            incomplete
+        <div className='card'>
+          <h2 className='card-title'>{this.props.title}</h2>
+          <div className='incomplete-items'>
             {incomplete}
           </div>
-          <div>Completed
+          <div className='complete-items'>
             {complete}
           </div>
         </div>

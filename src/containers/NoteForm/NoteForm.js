@@ -5,6 +5,7 @@ import { Redirect, Link } from 'react-router-dom'
 import { NoteItem } from '../../components/NoteItem/NoteItem'
 import { editNote } from '../../thunks/editNote'
 import { deleteNote } from '../../thunks/deleteNote'
+import NoteArea from '../NoteArea/NoteArea'
 import PropTypes from 'prop-types';
 let shortID = require('short-id');
 
@@ -92,20 +93,24 @@ export class NoteForm extends Component {
     const { isEdit } = this.props
 
     return (
-      <form>
+      <div className='form-container'>
+      <NoteArea />
+      <form className='form'>
         {
           this.state.redirect && <Redirect to='/' />
         }
+        <div>
         {
           isEdit ? <button onClick={this.handleDelete}>delete</button>
             : <Link to='/'><button>Go back</button></Link>
         }
+        </div>
         <input onChange={this.handleTitleChange} name='title' value={title}></input>
         {
           items.map((item) => {
             if (!item.isCompleted) {
               return <NoteItem item={item} handleItemChange={this.handleItemChange} handleItemDelete={this.handleItemDelete} key={item.id} toggleComplete={this.toggleComplete} />
-            } else return ''
+            } else return null
           })
         }
         <div onClick={this.handleAddItem}>Add Item</div>
@@ -114,12 +119,13 @@ export class NoteForm extends Component {
             items.map((item) => {
               if (item.isCompleted) {
                 return <NoteItem item={item} handleItemChange={this.handleItemChange} handleItemDelete={this.handleItemDelete} key={item.id} toggleComplete={this.toggleComplete} />
-              } else return ''
+              } else return null
             })
           }
         </section>
         <button onClick={this.handleSubmit}>SAVE</button>
       </form>
+      </div>
     )
   }
 }
