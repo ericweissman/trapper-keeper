@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
 
 export class NoteCard extends Component {
 
@@ -30,6 +31,18 @@ export class NoteCard extends Component {
       </Link>
     )
   }
+}
+
+NoteCard.propTypes = {
+  id: PropTypes.string,
+  noteItems: PropTypes.array,
+  title: PropTypes.string,
+}
+
+NoteCard.defaultProps = {
+  id: '',
+  noteItems: [],
+  title: '',
 }
 
 export default NoteCard

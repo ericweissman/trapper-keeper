@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should have match the correct snapshot 1`] = `
+<header>
+  <h1>
+    TrapperKeeper
+  </h1>
+  <Link
+    replace={false}
+    to="/new-note"
+  >
+    Add Note
+  </Link>
+</header>
+`;

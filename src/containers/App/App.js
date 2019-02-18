@@ -2,20 +2,18 @@ import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import NotFound from '../../components/NotFound/NotFound'
+import Header from '../../components/Header/Header'
 import NoteForm from '../NoteForm/NoteForm'
 import NoteArea from '../NoteArea/NoteArea'
-import { Link } from 'react-router-dom'
 import './App.scss';
 import { fetchNotes } from '../../thunks/fetchNotes'
+import PropTypes from 'prop-types';
 let shortID = require('short-id');
 
 
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      loading: true,
-    }
   }
 
   componentDidMount = async () => {
@@ -26,11 +24,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>TrapperKeeper</h1>
-        {
-          this.props.location.pathname === '/' &&
-          <Link to='/new-note'>ADD NEW NOTE</Link>
-        }
+        <Header />
         <Switch>
           <Route exact path='/' component={NoteArea} />
           <Route path='/new-note' render={() => {
@@ -62,5 +56,20 @@ export const mapStateToProps = (state) => ({
 export const mapDispatchToProps = (dispatch) => ({
   fetchNotes: (url) => dispatch(fetchNotes(url))
 })
+
+App.propTypes = {
+  error: PropTypes.string,
+  fetchNotes: PropTypes.func,
+  isLoading: PropTypes.bool,
+  items: PropTypes.array,
+  notes: PropTypes.array,
+}
+
+App.defaultProps = {
+  error: '',
+  isLoading: true,
+  items: [],
+  notes: []
+}
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
