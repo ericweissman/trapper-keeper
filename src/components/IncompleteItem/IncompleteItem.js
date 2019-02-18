@@ -1,5 +1,6 @@
 import React from 'react'
 import unchecked from '../../images/unchecked.svg'
+import PropTypes from 'prop-types';
 
 export const IncompleteItem = (props) => {
   return (
@@ -11,3 +12,7 @@ export const IncompleteItem = (props) => {
 }
 
 export default IncompleteItem
+
+IncompleteItem.propTypes = {
+  description: PropTypes.string,
+}

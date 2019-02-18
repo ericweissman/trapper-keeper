@@ -1,5 +1,7 @@
 import React from 'react'
 import checked from '../../images/checked.svg'
+import PropTypes from 'prop-types';
+
 
 export const CompleteItem = (props) => {
   return (
@@ -11,3 +13,7 @@ export const CompleteItem = (props) => {
 }
 
 export default CompleteItem
+
+CompleteItem.propTypes = {
+  description: PropTypes.string,
+}
