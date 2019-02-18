@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound should have match the correct snapshot 1`] = `
+<div>
+  <h1>
+    404 Not Found
+  </h1>
+  <Link
+    replace={false}
+    to="/"
+  >
+    Return to All Notes
+  </Link>
+</div>
+`;
