@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import NotFound from '../../components/NotFound/NotFound'
+import Header from '../../components/Header/Header'
 import NoteForm from '../NoteForm/NoteForm'
 import NoteArea from '../NoteArea/NoteArea'
 import { Link } from 'react-router-dom'
@@ -26,11 +27,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>TrapperKeeper</h1>
-        {
-          this.props.location.pathname === '/' &&
-          <Link to='/new-note'>ADD NEW NOTE</Link>
-        }
+        <Header />
         <Switch>
           <Route exact path='/' component={NoteArea} />
           <Route path='/new-note' render={() => {
