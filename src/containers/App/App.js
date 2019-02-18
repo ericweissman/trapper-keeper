@@ -14,7 +14,7 @@ let shortID = require('short-id');
 class App extends Component {
 
   componentDidMount = async () => {
-    const url = 'http://localhost:3001/api/v1/noteS'
+    const url = 'http://localhost:3001/api/v1/notes'
     this.props.fetchNotes(url)
   }
 
