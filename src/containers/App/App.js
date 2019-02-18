@@ -5,9 +5,9 @@ import NotFound from '../../components/NotFound/NotFound'
 import Header from '../../components/Header/Header'
 import NoteForm from '../NoteForm/NoteForm'
 import NoteArea from '../NoteArea/NoteArea'
-import { Link } from 'react-router-dom'
 import './App.scss';
 import { fetchNotes } from '../../thunks/fetchNotes'
+import PropTypes from 'prop-types';
 let shortID = require('short-id');
 
 
@@ -59,5 +59,20 @@ export const mapStateToProps = (state) => ({
 export const mapDispatchToProps = (dispatch) => ({
   fetchNotes: (url) => dispatch(fetchNotes(url))
 })
+
+App.propTypes = {
+  error: PropTypes.string,
+  fetchNotes: PropTypes.func,
+  isLoading: PropTypes.bool,
+  items: PropTypes.array,
+  notes: PropTypes.array,
+}
+
+App.defaultProps = {
+  error: '',
+  isLoading: true,
+  items: [],
+  notes: []
+}
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
