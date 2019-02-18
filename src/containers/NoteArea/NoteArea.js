@@ -2,11 +2,23 @@ import React, { Component } from 'react'
 import NoteCard from '../NoteCard/NoteCard'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import Masonry from 'react-masonry-css'
+import './NoteArea.scss'
 
 export class NoteArea extends Component {
 
+
+
   render() {
     const { items, notes } = this.props
+
+    const breakpointColumnsObj = {
+      default: 4,
+      1100: 3,
+      700: 2,
+      500: 1
+    };
+
     const noteCards = notes.map(note => {
       const noteItems = items.filter(item => item.noteID === note.id)
 
@@ -14,9 +26,11 @@ export class NoteArea extends Component {
     })
 
     return (
-      <main>
+      <Masonry breakpointCols={breakpointColumnsObj}
+        className="note-area-grid"
+        columnClassName="note-area-grid_column">
         {noteCards}
-      </main>
+      </Masonry>
     )
   }
 }
