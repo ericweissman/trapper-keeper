@@ -19,7 +19,6 @@ export class NoteItem extends Component {
   } 
 
   render() {
-    console.log(this.props)
     const { handleItemChange } = this.props;  
     return (
       <div>
