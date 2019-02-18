@@ -14,9 +14,6 @@ let shortID = require('short-id');
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      loading: true,
-    }
   }
 
   componentDidMount = async () => {
