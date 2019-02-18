@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoteArea should match the snapshot 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;
+
+exports[`NoteArea should match the snapshot 2`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;
