@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { CompleteItem } from '../../components/CompleteItem/CompleteItem.js'
+import { IncompleteItem } from '../../components/IncompleteItem/IncompleteItem.js'
 import PropTypes from 'prop-types';
 
 export class NoteCard extends Component {
@@ -7,12 +9,12 @@ export class NoteCard extends Component {
   render() {
     const incomplete = this.props.noteItems.map((item) => {
       if (!item.isCompleted) {
-        return <li key={item.id}>{item.description}</li>
+        return <IncompleteItem key={item.id} description={item.description}/>
       } else return []
     })
     const complete = this.props.noteItems.map((item) => {
       if (item.isCompleted) {
-        return <li key={item.id}>{item.description} </li>
+        return <CompleteItem key={item.id} description={item.description} />
       } else return []
     })
 
@@ -20,12 +22,12 @@ export class NoteCard extends Component {
       <Link to={`/notes/${this.props.id}`}>
         <div className='card'>
           <h2 className='card-title'>{this.props.title}</h2>
-          <ul className='incomplete-items'>
+          <div className='incomplete-items'>
             {incomplete}
-          </ul>
-          <ul className='complete-items'>
+          </div>
+          <div className='complete-items'>
             {complete}
-          </ul>
+          </div>
         </div>
       </Link>
     )

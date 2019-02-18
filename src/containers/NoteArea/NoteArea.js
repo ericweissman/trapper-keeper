@@ -3,7 +3,7 @@ import NoteCard from '../NoteCard/NoteCard'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-css'
-import './NoteArea.scss'
+import '../../Main.scss'
 
 export class NoteArea extends Component {
 
