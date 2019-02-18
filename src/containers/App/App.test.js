@@ -1,20 +1,51 @@
 import React from 'react'
+import ReactDOM from 'react-dom';
 import { mapStateToProps, mapDispatchToProps } from './App'
 import App from './App'
 import { shallow } from 'enzyme'
+import { BrowserRouter} from 'react-router-dom';
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension'
+import { rootReducer } from '../../reducers/index';
+import thunk from 'redux-thunk';
 
 
 describe('App', () => {
+  const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
   let wrapper
-  const mockProps = {
+  let mockProps = {
     notes: [{id: 1, title: 'Note Title'}],
     items: [],
-    isLoading: true,
     error: '',
     fetchNotes: jest.fn()
   }
+
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
+      , div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
+
   it('should match the correct snapshot', () => {
     wrapper = shallow(<App {...mockProps} />)
+    expect(wrapper).toMatchSnapshot()
+  })
+
+  it('should match the correct snapshot if there is an error', () => {
+    let mockProps2 = {
+      notes: [{ id: 1, title: 'Note Title' }],
+      items: [],
+      error: 'Something went wrong',
+      fetchNotes: jest.fn()
+    }
+    wrapper = shallow(<App {...mockProps2} />)
     expect(wrapper).toMatchSnapshot()
   })
 

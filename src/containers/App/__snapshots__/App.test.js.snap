@@ -5,3 +5,9 @@ exports[`App should match the correct snapshot 1`] = `
   <Component />
 </Route>
 `;
+
+exports[`App should match the correct snapshot if there is an error 1`] = `
+<Route>
+  <Component />
+</Route>
+`;
