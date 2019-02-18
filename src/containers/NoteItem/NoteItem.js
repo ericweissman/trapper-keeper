@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 
 export class NoteItem extends Component {
   // constructor() {
@@ -36,6 +37,17 @@ export class NoteItem extends Component {
       </div>
     )
   }
+}
+
+NoteItem.propTypes = {
+  handleItemChange: PropTypes.func,
+  handleItemDelete: PropTypes.func,
+  item: PropTypes.object,
+  toggleComplete: PropTypes.func,
+}
+
+NoteItem.defaultProps = {
+  item: {},
 }
 
 export default NoteItem

@@ -5,6 +5,7 @@ import { Redirect, Link } from 'react-router-dom'
 import { NoteItem } from '../NoteItem/NoteItem'
 import { editNote } from '../../thunks/editNote'
 import { deleteNote } from '../../thunks/deleteNote'
+import PropTypes from 'prop-types';
 let shortID = require('short-id');
 
 export class NoteForm extends Component {
@@ -127,5 +128,20 @@ export const mapDispatchToProps = (dispatch) => ({
   deleteNote: (url, id) => dispatch(deleteNote(url, id)),
   editNote: (url, note) => dispatch(editNote(url, note))
 })
+
+NoteForm.propTypes = {
+  deleteNote: PropTypes.func,
+  editNote: PropTypes.func,
+  isEdit: PropTypes.bool,
+  items: PropTypes.array,
+  note: PropTypes.object,
+  postNote: PropTypes.func,
+}
+
+NoteForm.defaultProps = {
+  isEdit: false,
+  items: [],
+  note: {},
+}
 
 export default connect(null, mapDispatchToProps)(NoteForm)
