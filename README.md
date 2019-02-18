@@ -7,8 +7,8 @@
 - Start Local Host 3001: ```npm start```
 - For testing suite: ```npm test```
 
-## Installation Steps (Back End)
-- Clone this repo: ```https://github.com/ericweissman/trapper-keeper-be.git```
+## Installation Steps (Front End)
+- Clone this repo: ```https://github.com/ericweissman/trapper-keeper.git```
 - Install dependencies: ```npm install```
 - Start Local Host 3000: ```npm start```
 - For testing suite: ```npm test```
