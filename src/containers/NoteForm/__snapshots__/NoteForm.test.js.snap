@@ -1,45 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`noteForm initial state should match the initial snapshot 1`] = `
-<form>
-  <Link
-    replace={false}
-    to="/"
+<div
+  className="form-container"
+>
+  <Connect(NoteArea) />
+  <form
+    className="form"
   >
-    <button>
-      Go back
+    <div>
+      <Link
+        replace={false}
+        to="/"
+      >
+        <button>
+          Go back
+        </button>
+      </Link>
+    </div>
+    <input
+      name="title"
+      onChange={[Function]}
+      value=""
+    />
+    <section />
+    <button
+      onClick={[Function]}
+    >
+      SAVE
     </button>
-  </Link>
-  <input
-    name="title"
-    onChange={[Function]}
-    value=""
-  />
-  <NoteItem
-    handleItemChange={[Function]}
-    handleItemDelete={[Function]}
-    item={
-      Object {
-        "description": "",
-        "id": 6,
-        "isCompleted": false,
-        "noteID": 1,
-        "timestamp": 5,
-      }
-    }
-    key="6"
-    toggleComplete={[Function]}
-  />
-  <div
-    onClick={[Function]}
-  >
-    Add Item
-  </div>
-  <section />
-  <button
-    onClick={[Function]}
-  >
-    SAVE
-  </button>
-</form>
+  </form>
+</div>
 `;

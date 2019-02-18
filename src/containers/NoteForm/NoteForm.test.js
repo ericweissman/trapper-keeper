@@ -1,9 +1,7 @@
 import { NoteForm, mapDispatchToProps } from '../NoteForm/NoteForm'
 import React from 'react'
 import { shallow } from 'enzyme'
-// import {actions}
-// import {postNote} from '../../thunks/postNote'
-// import * as actions from '../../actions/index'
+
 const mockNote = { title: '', id: 1, timestamp: 555 }
 const mockProps = {
   postNote: jest.fn(),
@@ -14,13 +12,11 @@ const mockProps = {
   isEdit: false
 }
 let shortID = require('short-id')
-// jest.mock('../../thunks/postNote.js')
 
 describe('noteForm', () => {
   let wrapper
   Date.now = jest.fn().mockImplementation(() => 5)
   shortID.generate = jest.fn().mockImplementation(() => 6)
-  // let postNote = jest.fn()
 
   beforeEach(() => {
     wrapper = shallow(
@@ -42,26 +38,12 @@ describe('noteForm', () => {
           timestamp: 555,
           title: ''
         },
-        items: [{
-          description: "",
-          id: 6,
-          isCompleted: false,
-          noteID: 1,
-          timestamp: 5,
-        }],
+        items: [],
         isDeleted: false,
         redirect: false
       }
 
       expect(wrapper.state()).toEqual(expectedState)
-    })
-  })
-
-  describe('componentDidMount', () => {
-
-    it('should add a blank item to state', () => {
-      const expected = [{ id: 6, description: '', noteID: 1, timestamp: 5, isCompleted: false }]
-      expect(wrapper.state('items')).toEqual(expected)
     })
   })
 
@@ -86,13 +68,20 @@ describe('noteForm', () => {
 
   describe('handleItemChange', () => {
 
-    it('should setState of note title', () => {
+    it('should setState with item description', () => {
       const mockEvent = {
         target: {
           value: 'New Item Description',
           name: 6
         }
       }
+      const initialItem = [{
+        description: '',
+        id: 6,
+        timestamp: 5,
+        isCompleted: false,
+        noteID: 1
+      }]
       const expected = [{
         description: 'New Item Description',
         id: 6,
@@ -100,7 +89,7 @@ describe('noteForm', () => {
         isCompleted: false,
         noteID: 1
       }]
-
+      wrapper.setState({items: initialItem})
       wrapper.instance().handleItemChange(mockEvent)
       expect(wrapper.state('items')).toEqual(expected)
     })
@@ -112,6 +101,13 @@ describe('noteForm', () => {
           name: 99
         }
       }
+      const initialItem = [{
+        description: '',
+        id: 6,
+        timestamp: 5,
+        isCompleted: false,
+        noteID: 1
+      }]
       const expected = [{
         description: '',
         id: 6,
@@ -119,14 +115,55 @@ describe('noteForm', () => {
         isCompleted: false,
         noteID: 1
       }]
+      wrapper.setState({ items: initialItem })
+      wrapper.instance().handleItemChange(mockEvent)
+      expect(wrapper.state('items')).toEqual(expected)
+    })
+
+    it('should not add more than one new item field at a time', () => {
+      const mockEvent = {
+        target: {
+          value: 'New Item Description',
+          name: 99
+        }
+      }
+      const newItem = {
+        description: '',
+        id: 6,
+        timestamp: 5,
+        isCompleted: false,
+        noteID: 1
+      }
+      const initialItem = [{
+        description: 'need to add new item',
+        id: 6,
+        timestamp: 5,
+        isCompleted: false,
+        noteID: 1
+      }]
+      const expected = [{
+        description: 'need to add new item',
+        id: 6,
+        timestamp: 5,
+        isCompleted: false,
+        noteID: 1
+      }, newItem]
+      wrapper.setState({ items: initialItem })
       wrapper.instance().handleItemChange(mockEvent)
       expect(wrapper.state('items')).toEqual(expected)
     })
   })
 
   describe('toggleComplete', () => {
-    it('should setState of note title', () => {
+    it('should toggle item as complete', () => {
       const mockID = 6
+      const initialItem = [{
+        description: '',
+        id: 6,
+        timestamp: 5,
+        isCompleted: false,
+        noteID: 1
+      }]
       const expected = [{
         description: '',
         id: 6,
@@ -134,12 +171,20 @@ describe('noteForm', () => {
         isCompleted: true,
         noteID: 1
       }]
+      wrapper.setState({items: initialItem})
       wrapper.instance().toggleComplete(mockID)
       expect(wrapper.state('items')).toEqual(expected)
     })
 
     it('should not change state if no id is matched', () => {
       const mockID = 99
+      const initialItem = [{
+        description: '',
+        id: 6,
+        timestamp: 5,
+        isCompleted: false,
+        noteID: 1
+      }]
       const expected = [{
         description: '',
         id: 6,
@@ -147,33 +192,8 @@ describe('noteForm', () => {
         isCompleted: false,
         noteID: 1
       }]
+      wrapper.setState({ items: initialItem })
       wrapper.instance().toggleComplete(mockID)
-      expect(wrapper.state('items')).toEqual(expected)
-    })
-  })
-
-  describe('handleAddItem', () => {
-    it('should setState of note title', () => {
-      const mockEvent = {
-        preventDefault: jest.fn()
-      }
-
-      const newMockItem = {
-        description: '',
-        id: 6,
-        timestamp: 5,
-        isCompleted: false,
-        noteID: 1
-      }
-      const expected = [{
-        description: '',
-        id: 6,
-        timestamp: 5,
-        isCompleted: false,
-        noteID: 1
-      }, newMockItem]
-
-      wrapper.instance().handleAddItem(mockEvent)
       expect(wrapper.state('items')).toEqual(expected)
     })
   })
@@ -263,7 +283,6 @@ describe('noteForm', () => {
 
     it('should call dispatch when deleteNote is called', () => {
       const mockDispatch = jest.fn()
-      const mockID = 1
       const mockURL = 'http://localhost:3001/api/v1/notes'
 
       const mappedProps = mapDispatchToProps(mockDispatch)
