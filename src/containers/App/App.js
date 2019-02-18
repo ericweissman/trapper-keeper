@@ -5,9 +5,9 @@ import NotFound from '../../components/NotFound/NotFound'
 import Header from '../../components/Header/Header'
 import NoteForm from '../NoteForm/NoteForm'
 import NoteArea from '../NoteArea/NoteArea'
-import './App.scss';
 import { fetchNotes } from '../../thunks/fetchNotes'
 import PropTypes from 'prop-types';
+import '../../Main.scss'
 let shortID = require('short-id');
 
 
