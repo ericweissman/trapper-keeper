@@ -9,6 +9,7 @@ exports[`NoteItem should match the snapshot if item is checked 1`] = `
     type="checkbox"
   />
   <input
+    className="item-input"
     onChange={[MockFunction]}
     type="text"
   />
@@ -29,6 +30,7 @@ exports[`NoteItem should match the snapshot if item is unchecked 1`] = `
     type="checkbox"
   />
   <input
+    className="item-input"
     name={3}
     onChange={[MockFunction]}
     type="text"

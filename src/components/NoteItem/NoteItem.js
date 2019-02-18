@@ -16,6 +16,7 @@ export const NoteItem = (props) => {
       }
       <input
         type="text"
+        className='item-input'
         name={id}
         value={description}
         onChange={handleItemChange}

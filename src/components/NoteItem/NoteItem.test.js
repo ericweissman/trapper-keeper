@@ -38,6 +38,13 @@ describe('NoteItem', () => {
     expect(wrapper).toMatchSnapshot()
   })
 
+  it('should register a change when the input is typed in', () => {
+    const mockEvent = { target: { value: 'new info', name: 2 } }
+
+    wrapper.find('.item-input').simulate('change', mockEvent)
+    expect(mockHandleItemChange).toHaveBeenCalled()
+  })
+
   it('should register a click on the checkbox', () => {
     const mockEvent = { target: { checked: true } }
 
