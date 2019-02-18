@@ -3,7 +3,7 @@
 exports[`NoteCard should match the snapshot 1`] = `
 <Link
   replace={false}
-  to="/notes/undefined"
+  to="/notes/"
 >
   <div>
     <h2>

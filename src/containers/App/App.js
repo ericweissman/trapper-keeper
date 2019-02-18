@@ -12,9 +12,6 @@ let shortID = require('short-id');
 
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   componentDidMount = async () => {
     const url = 'http://localhost:3001/api/v1/notes'

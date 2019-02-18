@@ -105,7 +105,7 @@ export class NoteForm extends Component {
           items.map((item) => {
             if (!item.isCompleted) {
               return <NoteItem item={item} handleItemChange={this.handleItemChange} handleItemDelete={this.handleItemDelete} key={item.id} toggleComplete={this.toggleComplete} />
-            }
+            } else return ''
           })
         }
         <div onClick={this.handleAddItem}>Add Item</div>
@@ -113,7 +113,8 @@ export class NoteForm extends Component {
           {
             items.map((item) => {
               if (item.isCompleted) {
-                return <NoteItem item={item} handleItemChange={this.handleItemChange} handleItemDelete={this.handleItemDelete} key={item.id} toggleComplete={this.toggleComplete} />              }
+                return <NoteItem item={item} handleItemChange={this.handleItemChange} handleItemDelete={this.handleItemDelete} key={item.id} toggleComplete={this.toggleComplete} />
+              } else return ''
             })
           }
         </section>
