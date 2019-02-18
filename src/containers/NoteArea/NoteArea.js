@@ -10,7 +10,7 @@ export class NoteArea extends Component {
 
 
   render() {
-    const { items, notes } = this.props
+    const { items, notes, isLoading } = this.props
 
     const breakpointColumnsObj = {
       default: 4,
@@ -22,30 +22,38 @@ export class NoteArea extends Component {
     const noteCards = notes.map(note => {
       const noteItems = items.filter(item => item.noteID === note.id)
 
-      return <NoteCard {...note} noteItems={noteItems} key={note.id}/>
+      return <NoteCard {...note} noteItems={noteItems} key={note.id} />
     })
 
-    return (
-      <Masonry breakpointCols={breakpointColumnsObj}
-        className="note-area-grid"
-        columnClassName="note-area-grid_column">
-        {noteCards}
-      </Masonry>
-    )
+    switch (isLoading) {
+      case true:
+        return <div>...Loading</div>
+      default:
+        return (
+          <Masonry breakpointCols={breakpointColumnsObj}
+            className="note-area-grid"
+            columnClassName="note-area-grid_column">
+            {noteCards}
+          </Masonry>
+        )
+    }
   }
 }
 
 export const mapStateToProps = (state) => ({
   notes: state.notes,
-  items: state.items
+  items: state.items,
+  isLoading: state.isLoading,
 })
 
 NoteArea.propTypes = {
   items: PropTypes.array,
   notes: PropTypes.array,
+  isLoading: PropTypes.bool,
 }
 
 NoteArea.defaultProps = {
+  isLoading: true,
   items: [],
   notes: []
 }
