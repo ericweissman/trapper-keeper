@@ -14,32 +14,40 @@ let shortID = require('short-id');
 class App extends Component {
 
   componentDidMount = async () => {
-    const url = 'http://localhost:3001/api/v1/notes'
+    const url = 'http://localhost:3001/api/v1/noteS'
     this.props.fetchNotes(url)
   }
 
   render() {
-    return (
-      <div className="App">
-        <Header />
-        <Switch>
-          <Route exact path='/' component={NoteArea} />
-          <Route path='/new-note' render={() => {
-            const note = { title: '', id: shortID.generate(), timestamp: Date.now() }
-            return <NoteForm note={note} items={[]} isEdit={false}/>
-          }} />
-          <Route path='/notes/:id' render={({ match }) => {
-            const { id } = match.params
-            const note = this.props.notes.find(note => note.id === id)
-            const items = this.props.items.filter(item => item.noteID === id)
-            if (note) {
-              return <NoteForm note={note} items={items} isEdit={true}/>
-            }
-          }} />
-          <Route component={NotFound} />
-        </Switch>
-      </div>
-    );
+    const {error} = this.props
+    console.log('app error', this.props.error)
+    switch (error) {
+      case '':
+        return (
+          <div className="App">
+            <Header />
+            <Switch>
+              <Route exact path='/' component={NoteArea} />
+              <Route path='/new-note' render={() => {
+                const note = { title: '', id: shortID.generate(), timestamp: Date.now() }
+                return <NoteForm note={note} items={[]} isEdit={false} />
+              }} />
+              <Route path='/notes/:id' render={({ match }) => {
+                const { id } = match.params
+                const note = this.props.notes.find(note => note.id === id)
+                const items = this.props.items.filter(item => item.noteID === id)
+                if (note) {
+                  return <NoteForm note={note} items={items} isEdit={true} />
+                }
+              }} />
+              <Route component={NotFound} />
+            </Switch>
+          </div>
+        );
+      default:
+        return <div>Error: {error}</div>
+    }
+
   }
 }
 
