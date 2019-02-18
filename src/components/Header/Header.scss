@@ -2,4 +2,23 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: $font-primary;
+  background-color: $primary;
+
+  h1 {
+    margin-left: 35px;
+    padding: 15px 0;
+    color: $white
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    margin-right: 35px;
+    color: $white
+  }
+
+  svg {
+    color: $white
+  }
 }
