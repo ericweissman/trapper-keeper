@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { postNote } from '../../thunks/postNote'
 import { Redirect, Link } from 'react-router-dom'
-import { NoteItem } from '../NoteItem/NoteItem'
+import { NoteItem } from '../../components/NoteItem/NoteItem'
 import { editNote } from '../../thunks/editNote'
 import { deleteNote } from '../../thunks/deleteNote'
 let shortID = require('short-id');
