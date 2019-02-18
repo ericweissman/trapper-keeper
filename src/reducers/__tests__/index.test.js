@@ -9,7 +9,7 @@ describe('rootReducer', () => {
       items: [],
       notes: [],
       isLoading: true,
-      hasErrored: '',
+      error: '',
     }
     
     expect(store.getState()).toEqual(expected)
@@ -23,12 +23,12 @@ describe('rootReducer', () => {
     expect(store.getState().isLoading).toEqual(expected)
   })
 
-  it('should dispatch hasErrored action', () => {
+  it('should dispatch error action', () => {
     let action = {type: 'HAS_ERRORED', message: 'test' }
     let expected = 'test';
 
     store.dispatch(action)
-    expect(store.getState().hasErrored).toEqual(expected)
+    expect(store.getState().error).toEqual(expected)
   })
 
   it('should dispatch items action', () => {
