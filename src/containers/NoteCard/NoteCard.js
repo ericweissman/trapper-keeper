@@ -7,12 +7,12 @@ export class NoteCard extends Component {
   render() {
     const incomplete = this.props.noteItems.map((item) => {
       if (!item.isCompleted) {
-        return <p key={item.id}>{item.description}</p>
+        return <li key={item.id}>{item.description}</li>
       } else return []
     })
     const complete = this.props.noteItems.map((item) => {
       if (item.isCompleted) {
-        return <p key={item.id}>{item.description}</p>
+        return <li key={item.id}>{item.description} </li>
       } else return []
     })
 
@@ -20,12 +20,12 @@ export class NoteCard extends Component {
       <Link to={`/notes/${this.props.id}`}>
         <div className='card'>
           <h2 className='card-title'>{this.props.title}</h2>
-          <div className='incomplete-items'>
+          <ul className='incomplete-items'>
             {incomplete}
-          </div>
-          <div className='complete-items'>
+          </ul>
+          <ul className='complete-items'>
             {complete}
-          </div>
+          </ul>
         </div>
       </Link>
     )
