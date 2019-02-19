@@ -4,12 +4,17 @@ a {
 }
 
 .card {
-  border: 1px solid black;
+  border: 1px solid darkgrey;
   border-radius: 3px;
   margin: 20px;
   padding: 10px;
   background-color: $white;
   font-family: $font-secondary;
+  background-color: $card-bg;
+  box-shadow: 2px 2px 6px 0px rgba(0,0,0,1);
+  &:hover {
+    box-shadow: 2px 2px 6px 0px rgba($primary-dark, 1);
+  }
   h2 {
     font-family: $font-primary;
     color: $primary-dark;
@@ -19,13 +24,18 @@ a {
 
 .card-title {
   margin: 0 0 20px;
-
+  background-color: $highlight;
+  border-radius: 4px;
+  padding: 0 0 5px 5px;
 }
 
 .incomplete-items {
   margin: 10px 0;
+  background-color: $highlight;
+  border-radius: 4px;
 }
 
 .complete-items {
+  border-radius: 4px;
   background-color: $primary-light;
 }
