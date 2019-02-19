@@ -40,7 +40,7 @@ export class App extends Component {
                   return <NoteForm note={note} items={items} isEdit={true} />
                 } else {
                   return <NotFound />
-
+                }
               }} />
               <Route component={NotFound} />
             </Switch>

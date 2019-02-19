@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { CompleteItem } from '../../components/CompleteItem/CompleteItem.js'
-import { IncompleteItem } from '../../components/IncompleteItem/IncompleteItem.js'
+import CompleteItem from '../../components/CompleteItem/CompleteItem.js'
+import IncompleteItem from '../../components/IncompleteItem/IncompleteItem.js'
 import PropTypes from 'prop-types';
 
 export class NoteCard extends Component {
@@ -35,13 +35,12 @@ export class NoteCard extends Component {
 }
 
 NoteCard.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   noteItems: PropTypes.array,
   title: PropTypes.string,
 }
 
 NoteCard.defaultProps = {
-  id: '',
   noteItems: [],
   title: '',
 }

@@ -63,36 +63,33 @@ describe('noteForm', () => {
       expect(wrapper.state('note')).toEqual(expected)
     })
 
-    it('should setState of note title and a blank item', () => {
+    it('should add a blank item to state if title is not empty', () => {
       const mockEvent = {
         target: {
-          value: 'k'
+          value: 'New Title'
         }
       }
-      const expected = {
-        note: {
-          title: 'k',
-          id: 1,
-          timestamp: 555,
-        },
-        items: [{
-          description: '',
-          id: 6,
-          isCompleted: false,
-          noteID: 1,
-          timestamp: 5
-        }],
-        redirect: false,
-      }
+      const expected = [{ id: 6, description: '', isCompleted: false, noteID: 1, timestamp: 5 }]
 
       wrapper.instance().handleTitleChange(mockEvent)
-      expect(wrapper.state()).toEqual(expected)
+      expect(wrapper.state('items')).toEqual(expected)
+    })
+
+    it('should not add an item to state if title is blank', () => {
+      const mockEvent = {
+        target: {
+          value: ''
+        }
+      }
+      const expected = []
+      wrapper.instance().handleTitleChange(mockEvent)
+      expect(wrapper.state('items')).toEqual(expected)
     })
   })
 
   describe('handleItemChange', () => {
 
-    it('should setState with item description', () => {
+    it('should setState with item description when new item is added', () => {
       const mockEvent = {
         target: {
           value: 'New Item Description',
@@ -112,8 +109,14 @@ describe('noteForm', () => {
         timestamp: 5,
         isCompleted: false,
         noteID: 1
-      }, { ...initialItem, description: '' }]
-      wrapper.setState({items: [initialItem]})
+      }, {
+        description: '',
+        id: 6,
+        timestamp: 5,
+        isCompleted: false,
+        noteID: 1
+      }]
+      wrapper.setState({ items: initialItem })
       wrapper.instance().handleItemChange(mockEvent)
       expect(wrapper.state('items')).toEqual(expected)
     })
@@ -195,7 +198,7 @@ describe('noteForm', () => {
         isCompleted: true,
         noteID: 1
       }]
-      wrapper.setState({items: initialItem})
+      wrapper.setState({ items: initialItem })
       wrapper.instance().toggleComplete(mockID)
       expect(wrapper.state('items')).toEqual(expected)
     })
@@ -269,8 +272,8 @@ describe('noteForm', () => {
         id: 1,
         timestamp: 555
       }
-      wrapper.setState({note: mockNote})
-      
+      wrapper.setState({ note: mockNote })
+
       wrapper.instance().handleDelete()
       expect(wrapper.state('redirect')).toEqual(true)
       expect(wrapper.instance().props.deleteNote).toHaveBeenCalled()
