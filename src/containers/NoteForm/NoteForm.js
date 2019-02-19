@@ -73,12 +73,12 @@ export class NoteForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const { id, title } = this.state.note;
-    const newItems = this.state.items;
+    let newItems = this.state.items;
     const { isEdit, editNote, postNote } = this.props;
     const url = isEdit ? `http://localhost:3001/api/v1/notes/${id}` : 'http://localhost:3001/api/v1/notes'
     
     if (newItems[newItems.length - 1].description === '') {
-      newItems.pop()
+      newItems = newItems.filter(item => item.description !== '')
     }
     isEdit ? editNote(url, { id, title, items: newItems }) : postNote(url, { id, title, items: newItems })
     this.setState({ redirect: true, items: newItems })
@@ -122,7 +122,7 @@ export class NoteForm extends Component {
                 : <Link to='/'><button>Go back</button></Link>
             }
           </div>
-          <input onChange={this.handleTitleChange} name='title' value={title}></input>
+          <input onChange={this.handleTitleChange} placeholder="title" name='title' value={title}></input>
           <section>
             {notCompletedItems}
           </section>
