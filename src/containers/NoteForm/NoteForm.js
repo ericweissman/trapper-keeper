@@ -41,20 +41,23 @@ export class NoteForm extends Component {
 
   handleItemChange = (e) => {
     const { name, value } = e.target;
-    let newItems = this.state.items;
-    let lastIndex = newItems.length - 1;
+    const { items } = this.state;
     
-    if (newItems[lastIndex].description !== '') {
-      newItems = [...this.state.items, this.addNewBlankItem()]
-    }
-    
-    const items = newItems.map(item => {
+    const updatedItems = items.map(item => {
       if (item.id === name) {
         item.description = value
       }
       return item
     })
-    this.setState({ items })
+    let newItems;
+
+    if (items[items.length - 1].description !== '') {
+      newItems = [...items, this.addNewBlankItem()]
+    } else {
+      newItems = updatedItems
+    }
+    
+    this.setState({ items: newItems })
   }
 
   toggleComplete = (id) => {
