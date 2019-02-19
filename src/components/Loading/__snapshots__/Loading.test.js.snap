@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading should have the correct snapshot 1`] = `
+<h3
+  className="loading"
+>
+  Loading...
+</h3>
+`;
