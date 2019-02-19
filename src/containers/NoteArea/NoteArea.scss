@@ -1,19 +1,15 @@
-
 .note-area-grid {
-  display: -webkit-box; /* Not needed if autoprefixing */
-  display: -ms-flexbox; /* Not needed if autoprefixing */
   display: flex;
-  margin-left: -30px; /* gutter size offset */
+  margin-left: -30px;
   width: auto;
 }
 
 .note-area-grid_column {
-  padding-left: 30px; /* gutter size */
+  padding-left: 30px;
   background-clip: padding-box;
 }
  
-// Style your items
-.note-area-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+.note-area-grid_column > div {
   background: grey;
   margin-bottom: 30px;
 }
