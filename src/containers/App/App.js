@@ -11,7 +11,7 @@ import '../../Main.scss'
 let shortID = require('short-id');
 
 
-class App extends Component {
+export class App extends Component {
 
   componentDidMount = async () => {
     const url = 'http://localhost:3001/api/v1/notes'
@@ -19,8 +19,7 @@ class App extends Component {
   }
 
   render() {
-    const {error} = this.props
-    console.log('app error', this.props.error)
+    const { error } = this.props
     switch (error) {
       case '':
         return (
@@ -34,12 +33,14 @@ class App extends Component {
               }} />
               <Route path='/notes/:id' render={({ match }) => {
                 const { id } = match.params
-                const note = this.props.notes.find(note => note.id === id)
+                const note = this.props.notes.find(note => note.id == id)
                 const items = this.props.items.filter(item => item.noteID === id)
                 const newItem = { id: shortID.generate(), description: '', noteID: id, timestamp: Date.now(), isCompleted: false }
                 if (note) {
-                  return <NoteForm note={note} items={[...items, newItem]} isEdit={true} />
-                }
+                  return <NoteForm note={note} items={items} isEdit={true} />
+                } else {
+                  return <NotFound />
+
               }} />
               <Route component={NotFound} />
             </Switch>

@@ -24,7 +24,6 @@ exports[`noteForm initial state should match the initial snapshot 1`] = `
       value=""
     />
     <section />
-    <section />
     <button
       onClick={[Function]}
     >
