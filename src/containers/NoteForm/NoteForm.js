@@ -19,7 +19,6 @@ export class NoteForm extends Component {
         timestamp: this.props.note.timestamp,
       },
       items: this.props.items,
-      isDeleted: false,
       redirect: false
     }
   }
@@ -77,6 +76,10 @@ export class NoteForm extends Component {
     const { items } = this.state;
     const { isEdit, editNote, postNote } = this.props;
     const url = isEdit ? `http://localhost:3001/api/v1/notes/${id}` : 'http://localhost:3001/api/v1/notes'
+    
+    if (items[items.length - 1].description === '') {
+      items.pop()
+    }
     isEdit ? editNote(url, { id, title, items }) : postNote(url, { id, title, items })
     this.setState({ redirect: true })
   }

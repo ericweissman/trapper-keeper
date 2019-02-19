@@ -38,7 +38,6 @@ describe('noteForm', () => {
           title: ''
         },
         items: [],
-        isDeleted: false,
         redirect: false
       }
 
@@ -83,7 +82,6 @@ describe('noteForm', () => {
           noteID: 1,
           timestamp: 5
         }],
-        isDeleted: false,
         redirect: false,
       }
 
@@ -229,6 +227,14 @@ describe('noteForm', () => {
       const mockEvent = {
         preventDefault: jest.fn()
       }
+      const initialItem = [{
+        description: 'not empty',
+        id: 6,
+        timestamp: 5,
+        isCompleted: false,
+        noteID: 1
+      }]
+      wrapper.setState({ items: initialItem })
       const expected = true
 
       wrapper.instance().handleSubmit(mockEvent)
@@ -240,6 +246,14 @@ describe('noteForm', () => {
       const mockEvent = {
         preventDefault: jest.fn()
       }
+      const initialItem = [{
+        description: '',
+        id: 6,
+        timestamp: 5,
+        isCompleted: false,
+        noteID: 1
+      }]
+      wrapper.setState({ items: initialItem })
       const expected = true
       wrapper.setProps({ isEdit: true })
       wrapper.instance().handleSubmit(mockEvent)
