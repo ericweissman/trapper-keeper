@@ -11,6 +11,7 @@ exports[`NoteItem should match the snapshot if item is checked 1`] = `
   <input
     className="item-input"
     onChange={[MockFunction]}
+    placeholder="new item"
     type="text"
   />
   <button
@@ -33,6 +34,7 @@ exports[`NoteItem should match the snapshot if item is unchecked 1`] = `
     className="item-input"
     name={3}
     onChange={[MockFunction]}
+    placeholder="new item"
     type="text"
     value="some item"
   />
