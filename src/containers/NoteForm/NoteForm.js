@@ -132,12 +132,14 @@ export class NoteForm extends Component {
             </div>
             {errorMessage !== '' && <h4>{errorMessage}</h4>}
             <input className='title-input' autoComplete="off" onChange={this.handleTitleChange} placeholder="Add your title here!" name='title' value={title}></input>
-            <section className='incomplete-section'>      
-              {incompleteItems}
-            </section>
-            <section className='completed-section'>
-              {completeItems}
-            </section>
+            <div className='items-area'>
+              <section className='incomplete-section'>      
+                {incompleteItems}
+              </section>
+              <section className='completed-section'>
+                {completeItems}
+              </section>
+            </div>
             <button className='form-back-del-btn form-save-btn' onClick={this.handleSubmit}>Save</button>
           </form>
         </div>
