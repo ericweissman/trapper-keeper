@@ -5,6 +5,7 @@ import NotFound from '../../components/NotFound/NotFound'
 import Header from '../../components/Header/Header'
 import NoteForm from '../NoteForm/NoteForm'
 import NoteArea from '../NoteArea/NoteArea'
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage'
 import { fetchNotes } from '../../thunks/fetchNotes'
 import PropTypes from 'prop-types';
 import '../../Main.scss'
@@ -19,12 +20,12 @@ export class App extends Component {
   }
 
   render() {
-    const { error } = this.props
+    const { error, isLoading } = this.props
     switch (error) {
       case '':
         return (
           <div className="App">
-            <Header />
+            <Header isLoading={isLoading} />
             <Switch>
               <Route exact path='/' component={NoteArea} />
               <Route path='/new-note' render={() => {
@@ -47,7 +48,7 @@ export class App extends Component {
           </div>
         );
       default:
-        return <div>Error: {error}</div>
+        return <ErrorMessage error={error} />
     }
 
   }

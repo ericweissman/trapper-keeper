@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types';
+
 
 export const NoteItem = (props) => {
   const { handleItemChange, handleItemDelete, toggleComplete } = props;
@@ -28,5 +30,13 @@ export const NoteItem = (props) => {
     </div>
   )
 }
+
+NoteItem.propTypes = {
+  item: PropTypes.object,
+  handleItemChange: PropTypes.func,
+  handleItemDelete: PropTypes.func,
+  toggleComplete: PropTypes.func,
+}
+
 
 export default NoteItem

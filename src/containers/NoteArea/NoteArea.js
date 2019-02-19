@@ -3,6 +3,7 @@ import NoteCard from '../NoteCard/NoteCard'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-css'
+import Loading from '../../components/Loading/Loading'
 import '../../Main.scss'
 
 export class NoteArea extends Component {
@@ -26,7 +27,7 @@ export class NoteArea extends Component {
 
     switch (isLoading) {
       case true:
-        return <div>...Loading</div>
+        return <Loading />
       default:
         return (
           <Masonry breakpointCols={breakpointColumnsObj}

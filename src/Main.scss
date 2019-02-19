@@ -1,4 +1,6 @@
 @import './variables';
+@import './components/NotFound/NotFound.scss';
+@import './components/ErrorMessage/ErrorMessage.scss';
 @import './containers/NoteCard/NoteCard.scss';
 @import './containers/NoteArea/NoteArea.scss';
 @import './containers/NoteForm/NoteForm.scss';
@@ -7,6 +9,7 @@
 @import './components/Header/Header.scss';
 @import './components/CompleteItem/CompleteItem.scss';
 @import './components/IncompleteItem/IncompleteItem.scss';
+@import './components/Loading/Loading.scss';
 @import url('https://fonts.googleapis.com/css?family=Lato|Roboto+Condensed');
 
 * {
