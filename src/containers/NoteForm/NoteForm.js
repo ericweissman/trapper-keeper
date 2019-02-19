@@ -28,9 +28,9 @@ export class NoteForm extends Component {
     const { value } = e.target
     const { id, timestamp } = this.state.note
     let items = this.state.items;
-    
+
     if (value !== '') items = [this.addNewBlankItem()]
-    
+
     this.setState({ note: { title: value, id, timestamp }, items })
   }
 
@@ -42,7 +42,7 @@ export class NoteForm extends Component {
   handleItemChange = (e) => {
     const { name, value } = e.target;
     const { items } = this.state;
-    
+
     const updatedItems = items.map(item => {
       if (item.id === name) {
         item.description = value
@@ -56,7 +56,7 @@ export class NoteForm extends Component {
     } else {
       newItems = updatedItems
     }
-    
+
     this.setState({ items: newItems })
   }
 
@@ -97,39 +97,37 @@ export class NoteForm extends Component {
     let { title } = this.state.note
     const { items } = this.state
     const { isEdit } = this.props
+    const notCompletedItems = items.map((item) => {
+      if (!item.isCompleted) {
+        return <NoteItem item={item} handleItemChange={this.handleItemChange} handleItemDelete={this.handleItemDelete} key={item.id} toggleComplete={this.toggleComplete} />
+      } else return null
+    })
+    const completedItems = items.map((item) => {
+      if (item.isCompleted) {
+        return <NoteItem item={item} handleItemChange={this.handleItemChange} handleItemDelete={this.handleItemDelete} key={item.id} toggleComplete={this.toggleComplete} />
+      } else return null
+    })
 
     return (
       <div className='form-container'>
-      <NoteArea />
-      <form className='form'>
-        {
-          this.state.redirect && <Redirect to='/' />
-        }
-        <div>
-        {
-          isEdit ? <button onClick={this.handleDelete}>delete</button>
-            : <Link to='/'><button>Go back</button></Link>
-        }
-        </div>
-        <input onChange={this.handleTitleChange} name='title' value={title}></input>
-        {
-          items.map((item) => {
-            if (!item.isCompleted) {
-              return <NoteItem item={item} handleItemChange={this.handleItemChange} handleItemDelete={this.handleItemDelete} key={item.id} toggleComplete={this.toggleComplete} />
-            } else return null
-          })
-        }
-        <section>
-          {
-            items.map((item) => {
-              if (item.isCompleted) {
-                return <NoteItem item={item} handleItemChange={this.handleItemChange} handleItemDelete={this.handleItemDelete} key={item.id} toggleComplete={this.toggleComplete} />
-              } else return null
-            })
-          }
-        </section>
-        <button onClick={this.handleSubmit}>SAVE</button>
-      </form>
+        <NoteArea />
+        <form className='form'>
+          {this.state.redirect && <Redirect to='/' />}
+          <div>
+            {
+              isEdit ? <button onClick={this.handleDelete}>delete</button>
+                : <Link to='/'><button>Go back</button></Link>
+            }
+          </div>
+          <input onChange={this.handleTitleChange} name='title' value={title}></input>
+          <section>
+            {notCompletedItems}
+          </section>
+          <section>
+            {completedItems}
+          </section>
+          <button onClick={this.handleSubmit}>SAVE</button>
+        </form>
       </div>
     )
   }

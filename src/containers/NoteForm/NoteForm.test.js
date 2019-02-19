@@ -30,7 +30,6 @@ describe('noteForm', () => {
       expect(wrapper).toMatchSnapshot()
     })
 
-
     it('should have initial state', () => {
       const expectedState = {
         note: {
@@ -49,20 +48,47 @@ describe('noteForm', () => {
 
   describe('handleTitleChange', () => {
 
-    it('should setState of note title', () => {
+    it('should setState of note title as a default', () => {
       const mockEvent = {
         target: {
-          value: 'New Title'
+          value: ''
         }
       }
       const expected = {
-        title: 'New Title',
+        title: '',
         id: 1,
         timestamp: 555,
       }
 
       wrapper.instance().handleTitleChange(mockEvent)
       expect(wrapper.state('note')).toEqual(expected)
+    })
+
+    it('should setState of note title and a blank item', () => {
+      const mockEvent = {
+        target: {
+          value: 'k'
+        }
+      }
+      const expected = {
+        note: {
+          title: 'k',
+          id: 1,
+          timestamp: 555,
+        },
+        items: [{
+          description: '',
+          id: 6,
+          isCompleted: false,
+          noteID: 1,
+          timestamp: 5
+        }],
+        isDeleted: false,
+        redirect: false,
+      }
+
+      wrapper.instance().handleTitleChange(mockEvent)
+      expect(wrapper.state()).toEqual(expected)
     })
   })
 
@@ -75,21 +101,21 @@ describe('noteForm', () => {
           name: 6
         }
       }
-      const initialItem = [{
+      const initialItem = {
         description: '',
         id: 6,
         timestamp: 5,
         isCompleted: false,
         noteID: 1
-      }]
+      }
       const expected = [{
         description: 'New Item Description',
         id: 6,
         timestamp: 5,
         isCompleted: false,
         noteID: 1
-      }]
-      wrapper.setState({items: initialItem})
+      }, { ...initialItem, description: '' }]
+      wrapper.setState({items: [initialItem]})
       wrapper.instance().handleItemChange(mockEvent)
       expect(wrapper.state('items')).toEqual(expected)
     })
