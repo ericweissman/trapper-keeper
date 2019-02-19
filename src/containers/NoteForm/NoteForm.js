@@ -118,28 +118,28 @@ export class NoteForm extends Component {
         )
       }
     })
-
+    // debugger
     return (
       <div>
         <NoteArea />
         <div className='form-container'>
           <form className='form'>
             {this.state.redirect && <Redirect to='/' />}
-            <div>
+            <div className='form-back-del-btn-container'>
               {
-                isEdit ? <button onClick={this.handleDelete}>delete</button>
-                  : <Link to='/'><button>Go back</button></Link>
+                isEdit ? <button className='form-back-del-btn' onClick={this.handleDelete}>delete</button>
+                  : <Link to='/'><button className='form-back-del-btn' >Go back</button></Link>
               }
             </div>
             {errorMessage !== '' && <h4>{errorMessage}</h4>}
-            <input onChange={this.handleTitleChange} placeholder="title" name='title' value={title}></input>
-            <section>
+            <input className='form-input' autocomplete="off" onChange={this.handleTitleChange} placeholder="Add your title here!" name='title' value={title}></input>
+            <section className='incomplete-section'>      
               {incompleteItems}
             </section>
-            <section>
+            <section className='completed-section'>
               {completeItems}
             </section>
-            <button onClick={this.handleSubmit}>SAVE</button>
+            <button className='form-back-del-btn from-save-btn' onClick={this.handleSubmit}>SAVE</button>
           </form>
         </div>
       </div>

@@ -7,17 +7,19 @@ export const NoteItem = (props) => {
 
   const toggle = () => toggleComplete(id)
   const deleteItem = () => handleItemDelete(id)
-  
+
   return (
-    <div>
+    <div className='noteitem-container'>
       {
         isCompleted ?
-          <input checked type="checkbox" className="checkbox" onChange={toggle} /> :
-          <input type="checkbox" className="checkbox" onChange={toggle} />
+          <input checked type="checkbox" className='checkbox' onChange={toggle} />
+          :
+          <input type="checkbox" className='checkbox' onChange={toggle} />
       }
       <input
         type="text"
-        className='item-input'
+        className='form-input item-input'
+        autocomplete="off"
         name={id}
         placeholder="new item"
         value={description}

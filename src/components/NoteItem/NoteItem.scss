@@ -1,0 +1,23 @@
+.noteitem-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: 2s linear;
+}
+
+.item-input {
+  margin-left: 10px;
+}
+
+.checkbox {
+  margin: 0px;
+  transform: scale(2.3);
+  padding: 0;
+}
+
+.item-del {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  outline: none;
+}

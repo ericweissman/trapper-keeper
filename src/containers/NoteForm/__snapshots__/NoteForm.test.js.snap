@@ -9,25 +9,36 @@ exports[`noteForm initial state should match the initial snapshot 1`] = `
     <form
       className="form"
     >
-      <div>
+      <div
+        className="form-back-del-btn-container"
+      >
         <Link
           replace={false}
           to="/"
         >
-          <button>
+          <button
+            className="form-back-del-btn"
+          >
             Go back
           </button>
         </Link>
       </div>
       <input
+        autocomplete="off"
+        className="form-input"
         name="title"
         onChange={[Function]}
-        placeholder="title"
+        placeholder="Add your title here!"
         value=""
       />
-      <section />
-      <section />
+      <section
+        className="incomplete-section"
+      />
+      <section
+        className="completed-section"
+      />
       <button
+        className="form-back-del-btn from-save-btn"
         onClick={[Function]}
       >
         SAVE
