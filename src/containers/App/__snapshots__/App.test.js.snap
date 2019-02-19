@@ -4,7 +4,9 @@ exports[`App should match the correct snapshot 1`] = `
 <div
   className="App"
 >
-  <Header />
+  <Header
+    isLoading={true}
+  />
   <Switch>
     <Route
       component={[Function]}
@@ -30,7 +32,9 @@ exports[`App should match the correct snapshot if there is an error 1`] = `
 <div
   className="App"
 >
-  <Header />
+  <Header
+    isLoading={true}
+  />
   <Switch>
     <Route
       component={[Function]}
