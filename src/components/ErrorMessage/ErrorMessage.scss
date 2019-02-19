@@ -1,0 +1,13 @@
+.error-msg {
+  text-align: center;
+  font-family: $font-secondary;
+  h3 {
+    color: $primary-dark;
+    text-transform: uppercase; 
+  }
+  a {
+    text-decoration: underline;
+    color: $primary-light
+  }
+  padding-top: 50px;
+}
