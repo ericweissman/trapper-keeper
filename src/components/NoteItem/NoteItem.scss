@@ -6,17 +6,18 @@
 }
 
 .item-input {
-  margin-left: 10px;
+  margin-left: 15px;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
-  width: 215px;
+  width: 185px;
   height: 28px;
 }
 
 .checkbox {
-  margin: 0px;
+  margin-left: 10px;
   transform: scale(2.3);
   padding: 0;
+  outline: none;
 }
 
 .item-del {
@@ -24,7 +25,8 @@
   font-family: $font-secondary;
   font-size: 23px;
   color: white;
-  width: 45px;
+  width: 40px;
+  margin-right: 8px;
   border-top-right-radius: 5px;
   outline: none;
   border-bottom-right-radius: 5px;
