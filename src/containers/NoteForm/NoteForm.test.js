@@ -38,7 +38,8 @@ describe('noteForm', () => {
           title: ''
         },
         items: [],
-        redirect: false
+        redirect: false,
+        errorMessage: ''
       }
 
       expect(wrapper.state()).toEqual(expectedState)
@@ -116,7 +117,7 @@ describe('noteForm', () => {
         isCompleted: false,
         noteID: 1
       }]
-      wrapper.setState({ items: initialItem })
+      wrapper.setState({ items: [initialItem] })
       wrapper.instance().handleItemChange(mockEvent)
       expect(wrapper.state('items')).toEqual(expected)
     })
@@ -237,7 +238,8 @@ describe('noteForm', () => {
         isCompleted: false,
         noteID: 1
       }]
-      wrapper.setState({ items: initialItem })
+      wrapper.setState({ note: { title: 'title' }, items: initialItem })
+
       const expected = true
 
       wrapper.instance().handleSubmit(mockEvent)
@@ -256,12 +258,22 @@ describe('noteForm', () => {
         isCompleted: false,
         noteID: 1
       }]
-      wrapper.setState({ items: initialItem })
+      wrapper.setState({ note: {title: 'title'}, items: initialItem })
       const expected = true
       wrapper.setProps({ isEdit: true })
       wrapper.instance().handleSubmit(mockEvent)
       expect(wrapper.state('redirect')).toEqual(expected)
       expect(wrapper.instance().props.editNote).toHaveBeenCalled()
+    })
+
+    it('should provide an error message when no title is provided', () => {
+      const mockEvent = {
+        preventDefault: jest.fn()
+      }
+      const expected = 'Please provide a title'
+      
+      wrapper.instance().handleSubmit(mockEvent)
+      expect(wrapper.state('errorMessage')).toEqual(expected)
     })
   })
 

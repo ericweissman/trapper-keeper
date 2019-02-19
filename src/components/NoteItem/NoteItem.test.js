@@ -33,7 +33,7 @@ describe('NoteItem', () => {
   })
 
   it('should match the snapshot if item is checked', () => {
-    wrapper.setProps({ item: { isCompleted: true } })
+    wrapper.setProps({ isCompleted: true })
   
     expect(wrapper).toMatchSnapshot()
   })
