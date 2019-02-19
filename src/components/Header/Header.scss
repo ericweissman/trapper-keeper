@@ -20,6 +20,12 @@ header {
     height: 35px;
     width: 160px;
     border-radius: 20px;
+    transition: .1s linear;
+    &:hover {
+      transform: scale(1.01);
+      background-color: $primary-light-hover;
+      transition: .1s linear;
+    }
   }
 
   img {
