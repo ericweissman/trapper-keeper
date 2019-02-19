@@ -35,11 +35,12 @@ export class App extends Component {
                 const { id } = match.params
                 const note = this.props.notes.find(note => note.id == id)
                 const items = this.props.items.filter(item => item.noteID === id)
+                const newItem = { id: shortID.generate(), description: '', noteID: id, timestamp: Date.now(), isCompleted: false }
                 if (note) {
                   return <NoteForm note={note} items={items} isEdit={true} />
                 } else {
                   return <NotFound />
-                }
+
               }} />
               <Route component={NotFound} />
             </Switch>
