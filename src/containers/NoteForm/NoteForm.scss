@@ -1,1 +1,23 @@
-  
+.form-container {
+  background-color: rgba(0, 0, 0, 0.7);
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+} 
+
+.form {
+  background-color: $primary-light;
+  border: 1px solid black;
+  padding: 20px;
+  margin-left: -162.5px;
+  margin-top: -200px;
+  left: 50%;
+  top: 50%; 
+  box-shadow: 4px 4px 12px black;
+  height: 400px;
+  width: 325px;
+  position: fixed;
+  z-index: 12;
+}

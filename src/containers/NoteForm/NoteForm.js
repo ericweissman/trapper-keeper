@@ -76,7 +76,7 @@ export class NoteForm extends Component {
     let newItems = this.state.items;
     const { isEdit, editNote, postNote } = this.props;
     const url = isEdit ? `http://localhost:3001/api/v1/notes/${id}` : 'http://localhost:3001/api/v1/notes'
-    
+
     if (newItems[newItems.length - 1].description === '') {
       newItems = newItems.filter(item => item.description !== '')
     }
@@ -112,25 +112,27 @@ export class NoteForm extends Component {
     })
 
     return (
-      <div className='form-container'>
+      <div>
         <NoteArea />
-        <form className='form'>
-          {this.state.redirect && <Redirect to='/' />}
-          <div>
-            {
-              isEdit ? <button onClick={this.handleDelete}>delete</button>
-                : <Link to='/'><button>Go back</button></Link>
-            }
-          </div>
-          <input onChange={this.handleTitleChange} placeholder="title" name='title' value={title}></input>
-          <section>
-            {notCompletedItems}
-          </section>
-          <section>
-            {completedItems}
-          </section>
-          <button onClick={this.handleSubmit}>SAVE</button>
-        </form>
+        <div className='form-container'>
+          <form className='form'>
+            {this.state.redirect && <Redirect to='/' />}
+            <div>
+              {
+                isEdit ? <button onClick={this.handleDelete}>delete</button>
+                  : <Link to='/'><button>Go back</button></Link>
+              }
+            </div>
+            <input onChange={this.handleTitleChange} placeholder="title" name='title' value={title}></input>
+            <section>
+              {notCompletedItems}
+            </section>
+            <section>
+              {completedItems}
+            </section>
+            <button onClick={this.handleSubmit}>SAVE</button>
+          </form>
+        </div>
       </div>
     )
   }
