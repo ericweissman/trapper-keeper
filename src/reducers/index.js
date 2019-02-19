@@ -8,5 +8,5 @@ export const rootReducer = combineReducers({
   items: itemsReducer,
   notes: notesReducer,
   isLoading: isLoadingReducer,
-  hasErrored: hasErroredReducer,
+  error: hasErroredReducer,
 });
