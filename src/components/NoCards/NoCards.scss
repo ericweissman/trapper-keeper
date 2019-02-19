@@ -1,0 +1,13 @@
+.no-cards {
+  text-align: center;
+  font-family: $font-primary;
+  h3 {
+    color: $primary-dark;
+    text-transform: uppercase; 
+  }
+  a {
+    text-decoration: underline;
+    color: $primary-light;
+  }
+  padding-top: 50px;
+}

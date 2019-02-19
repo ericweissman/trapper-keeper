@@ -38,11 +38,9 @@ exports[`NoteItem should match the snapshot if item is unchecked 1`] = `
   <input
     autocomplete="off"
     className="form-input item-input"
-    name={3}
     onChange={[MockFunction]}
     placeholder="new item"
     type="text"
-    value="some item"
   />
   <button
     className="item-del"

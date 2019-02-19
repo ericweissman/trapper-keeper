@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NoteCard from '../NoteCard/NoteCard'
+import NoCards from '../../components/NoCards/NoCards'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-css'
@@ -29,6 +30,9 @@ export class NoteArea extends Component {
       case true:
         return <Loading />
       default:
+      if(noteCards.length === 0) {
+        return <NoCards />
+      } else {
         return (
           <Masonry breakpointCols={breakpointColumnsObj}
             className="note-area-grid"
@@ -36,6 +40,8 @@ export class NoteArea extends Component {
             {noteCards}
           </Masonry>
         )
+
+      }
     }
   }
 }

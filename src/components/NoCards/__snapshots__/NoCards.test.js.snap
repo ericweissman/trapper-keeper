@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoCards should have match the correct snapshot 1`] = `
+<div
+  className="no-cards"
+>
+  <h3>
+    You currently have no notes
+  </h3>
+  <Link
+    replace={false}
+    to="/new-note"
+  >
+    Start a new note!
+  </Link>
+</div>
+`;
