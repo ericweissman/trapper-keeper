@@ -15,10 +15,28 @@ header {
     display: flex;
     align-items: center;
     margin-right: 35px;
-    color: $white
+    color: $white;
+    background-color: $primary-light;
+    height: 35px;
+    width: 160px;
+    border-radius: 20px;
   }
 
   img {
     padding-right: 5px;
+    padding-left: 10px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  header {
+    flex-direction: column;
+    h1 {
+      margin: 0;
+    }
+    a {
+      margin: 0;
+      margin-bottom: 15px;
+    }
   }
 }
