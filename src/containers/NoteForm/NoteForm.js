@@ -19,18 +19,20 @@ export class NoteForm extends Component {
         timestamp: this.props.note.timestamp,
       },
       items: this.props.items,
-      redirect: false
+      redirect: false,
+      errorMessage: ''
     }
   }
 
   handleTitleChange = (e) => {
     const { value } = e.target
-    const { id, timestamp } = this.state.note
+    const { id, title, timestamp } = this.state.note
     let items = this.state.items;
-
-    if (value !== '') items = [this.addNewBlankItem()]
-
-    this.setState({ note: { title: value, id, timestamp }, items })
+    
+    if (value !== '' && title === '') {
+      items = [...items, this.addNewBlankItem()]
+    }
+    this.setState({ note: { title: value, id, timestamp }, items, errorMessage: '' })
   }
 
   addNewBlankItem = () => {
@@ -55,7 +57,6 @@ export class NoteForm extends Component {
     } else {
       newItems = updatedItems
     }
-
     this.setState({ items: newItems })
   }
 
@@ -72,16 +73,20 @@ export class NoteForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { id, title } = this.state.note;
+    let { id, title } = this.state.note;
     let newItems = this.state.items;
     const { isEdit, editNote, postNote } = this.props;
     const url = isEdit ? `http://localhost:3001/api/v1/notes/${id}` : 'http://localhost:3001/api/v1/notes'
 
-    if (newItems[newItems.length - 1].description === '') {
+    if (newItems.length > 0 && newItems[newItems.length - 1].description === '') {
       newItems = newItems.filter(item => item.description !== '')
     }
-    isEdit ? editNote(url, { id, title, items: newItems }) : postNote(url, { id, title, items: newItems })
-    this.setState({ redirect: true, items: newItems })
+    if (title !== '') {
+      isEdit ? editNote(url, { id, title, items: newItems }) : postNote(url, { id, title, items: newItems })
+      this.setState({ redirect: true, items: newItems })
+    } else {
+      this.setState({ errorMessage: 'Please provide a title', items: newItems })
+    }
   }
 
   handleDelete = () => {
@@ -98,17 +103,20 @@ export class NoteForm extends Component {
 
   render() {
     let { title } = this.state.note
-    const { items } = this.state
+    const { items, errorMessage } = this.state
     const { isEdit } = this.props
-    const notCompletedItems = items.map((item) => {
+    let incompleteItems = [], completeItems = []
+  
+    items.forEach((item) => {
       if (!item.isCompleted) {
-        return <NoteItem item={item} handleItemChange={this.handleItemChange} handleItemDelete={this.handleItemDelete} key={item.id} toggleComplete={this.toggleComplete} />
-      } else return null
-    })
-    const completedItems = items.map((item) => {
-      if (item.isCompleted) {
-        return <NoteItem item={item} handleItemChange={this.handleItemChange} handleItemDelete={this.handleItemDelete} key={item.id} toggleComplete={this.toggleComplete} />
-      } else return null
+        incompleteItems.push(
+          <NoteItem key={item.id} {...item} handleItemChange={this.handleItemChange} handleItemDelete={this.handleItemDelete}toggleComplete={this.toggleComplete} />
+        )
+      } else {
+        completeItems.push(
+          <NoteItem key={item.id} {...item} handleItemChange={this.handleItemChange} handleItemDelete={this.handleItemDelete}toggleComplete={this.toggleComplete} />
+        )
+      }
     })
 
     return (
@@ -123,12 +131,13 @@ export class NoteForm extends Component {
                   : <Link to='/'><button>Go back</button></Link>
               }
             </div>
+            {errorMessage !== '' && <h4>{errorMessage}</h4>}
             <input onChange={this.handleTitleChange} placeholder="title" name='title' value={title}></input>
             <section>
-              {notCompletedItems}
+              {incompleteItems}
             </section>
             <section>
-              {completedItems}
+              {completeItems}
             </section>
             <button onClick={this.handleSubmit}>SAVE</button>
           </form>

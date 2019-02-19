@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 
 
 export const NoteItem = (props) => {
-  const { handleItemChange, handleItemDelete, toggleComplete } = props;
-  const { isCompleted, id, description } = props.item;
+  const { isCompleted, id, description, handleItemChange, handleItemDelete, toggleComplete } = props;
 
   const toggle = () => toggleComplete(id)
   const deleteItem = () => handleItemDelete(id)
