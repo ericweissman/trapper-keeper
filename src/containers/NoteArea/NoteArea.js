@@ -23,7 +23,7 @@ export class NoteArea extends Component {
       const noteItems = items.filter(item => item.noteID === note.id)
 
       return <NoteCard {...note} noteItems={noteItems} key={note.id}/>
-    })
+    }).reverse()
 
     return (
       <Masonry breakpointCols={breakpointColumnsObj}
