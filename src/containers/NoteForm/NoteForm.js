@@ -80,7 +80,7 @@ export class NoteForm extends Component {
     if (newItems[newItems.length - 1].description === '') {
       newItems.pop()
     }
-    isEdit ? editNote(url, { id, title, newItems }) : postNote(url, { id, title, newItems })
+    isEdit ? editNote(url, { id, title, items: newItems }) : postNote(url, { id, title, items: newItems })
     this.setState({ redirect: true, items: newItems })
   }
 
