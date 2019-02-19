@@ -18,6 +18,7 @@ export const NoteItem = (props) => {
         type="text"
         className='item-input'
         name={id}
+        placeholder="new item"
         value={description}
         onChange={handleItemChange}
       />
