@@ -116,7 +116,7 @@ describe('noteForm', () => {
         isCompleted: false,
         noteID: 1
       }]
-      wrapper.setState({ items: initialItem })
+      wrapper.setState({ items: [initialItem] })
       wrapper.instance().handleItemChange(mockEvent)
       expect(wrapper.state('items')).toEqual(expected)
     })
