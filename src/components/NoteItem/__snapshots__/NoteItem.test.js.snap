@@ -11,7 +11,7 @@ exports[`NoteItem should match the snapshot if item is checked 1`] = `
     type="checkbox"
   />
   <input
-    autocomplete="off"
+    autoComplete="off"
     className="form-input item-input"
     onChange={[MockFunction]}
     placeholder="new item"
@@ -21,7 +21,7 @@ exports[`NoteItem should match the snapshot if item is checked 1`] = `
     className="item-del"
     onClick={[Function]}
   >
-    x
+    X
   </button>
 </div>
 `;
@@ -36,7 +36,7 @@ exports[`NoteItem should match the snapshot if item is unchecked 1`] = `
     type="checkbox"
   />
   <input
-    autocomplete="off"
+    autoComplete="off"
     className="form-input item-input"
     onChange={[MockFunction]}
     placeholder="new item"
@@ -46,7 +46,7 @@ exports[`NoteItem should match the snapshot if item is unchecked 1`] = `
     className="item-del"
     onClick={[Function]}
   >
-    x
+    X
   </button>
 </div>
 `;

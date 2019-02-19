@@ -9,7 +9,7 @@ const Header = (props) => {
       <h1>TrapperKeeper</h1>
       {
         !isLoading && <Link to='/new-note'>
-          <img src={addbtnWhite} />
+          <img alt='White add button' src={addbtnWhite} />
           <p>Add New Note</p>
         </Link>
       }
