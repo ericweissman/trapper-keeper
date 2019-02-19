@@ -3,7 +3,7 @@ import NoteCard from '../NoteCard/NoteCard'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-css'
-import './NoteArea.scss'
+import '../../Main.scss'
 
 export class NoteArea extends Component {
 
@@ -21,9 +21,8 @@ export class NoteArea extends Component {
 
     const noteCards = notes.map(note => {
       const noteItems = items.filter(item => item.noteID === note.id)
-
-      return <NoteCard {...note} noteItems={noteItems} key={note.id} />
-    })
+      return <NoteCard {...note} noteItems={noteItems} key={note.id}/>
+    }).reverse()
 
     switch (isLoading) {
       case true:

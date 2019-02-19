@@ -16,20 +16,19 @@ exports[`NoteCard should match the snapshot 1`] = `
     <div
       className="incomplete-items"
     >
-      <p
+      <IncompleteItem
+        description="Note two of Title one"
+
         key="2"
-      >
-        Note two of Title one
-      </p>
+      />
     </div>
     <div
       className="complete-items"
     >
-      <p
+      <CompleteItem
+        description="Note one of Title one"
         key="1"
-      >
-        Note one of Title one
-      </p>
+      />
     </div>
   </div>
 </Link>
