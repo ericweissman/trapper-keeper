@@ -9,7 +9,12 @@ exports[`Header should have match the correct snapshot 1`] = `
     replace={false}
     to="/new-note"
   >
-    Add Note
+    <img
+      src="addbtn.svg"
+    />
+    <p>
+      Add New Note
+    </p>
   </Link>
 </header>
 `;
