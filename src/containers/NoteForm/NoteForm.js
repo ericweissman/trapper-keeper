@@ -118,7 +118,6 @@ export class NoteForm extends Component {
         )
       }
     })
-    // debugger
     return (
       <div>
         <NoteArea />
@@ -127,19 +126,19 @@ export class NoteForm extends Component {
             {this.state.redirect && <Redirect to='/' />}
             <div className='form-back-del-btn-container'>
               {
-                isEdit ? <button className='form-back-del-btn' onClick={this.handleDelete}>delete</button>
-                  : <Link to='/'><button className='form-back-del-btn' >Go back</button></Link>
+                isEdit ? <button className='form-back-del-btn' onClick={this.handleDelete}>Delete</button>
+                  : <Link to='/'><button className='form-back-del-btn'>Back</button></Link>
               }
             </div>
             {errorMessage !== '' && <h4>{errorMessage}</h4>}
-            <input className='form-input' autocomplete="off" onChange={this.handleTitleChange} placeholder="Add your title here!" name='title' value={title}></input>
+            <input className='title-input' autoComplete="off" onChange={this.handleTitleChange} placeholder="Add your title here!" name='title' value={title}></input>
             <section className='incomplete-section'>      
               {incompleteItems}
             </section>
             <section className='completed-section'>
               {completeItems}
             </section>
-            <button className='form-back-del-btn from-save-btn' onClick={this.handleSubmit}>SAVE</button>
+            <button className='form-back-del-btn form-save-btn' onClick={this.handleSubmit}>Save</button>
           </form>
         </div>
       </div>

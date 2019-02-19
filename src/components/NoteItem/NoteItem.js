@@ -19,13 +19,13 @@ export const NoteItem = (props) => {
       <input
         type="text"
         className='form-input item-input'
-        autocomplete="off"
+        autoComplete="off"
         name={id}
         placeholder="new item"
         value={description}
         onChange={handleItemChange}
       />
-      <button className="item-del" onClick={deleteItem}>x</button>
+      <button className="item-del" onClick={deleteItem}>X</button>
     </div>
   )
 }
