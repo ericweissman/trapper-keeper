@@ -30,7 +30,6 @@ describe('noteForm', () => {
       expect(wrapper).toMatchSnapshot()
     })
 
-
     it('should have initial state', () => {
       const expectedState = {
         note: {
@@ -39,7 +38,6 @@ describe('noteForm', () => {
           title: ''
         },
         items: [],
-        isDeleted: false,
         redirect: false
       }
 
@@ -49,14 +47,14 @@ describe('noteForm', () => {
 
   describe('handleTitleChange', () => {
 
-    it('should setState of note title', () => {
+    it('should setState of note title as a default', () => {
       const mockEvent = {
         target: {
-          value: 'New Title'
+          value: ''
         }
       }
       const expected = {
-        title: 'New Title',
+        title: '',
         id: 1,
         timestamp: 555,
       }
@@ -87,25 +85,24 @@ describe('noteForm', () => {
       wrapper.instance().handleTitleChange(mockEvent)
       expect(wrapper.state('items')).toEqual(expected)
     })
-
   })
 
   describe('handleItemChange', () => {
 
-    it('should setState with item description when new itme is added', () => {
+    it('should setState with item description when new item is added', () => {
       const mockEvent = {
         target: {
           value: 'New Item Description',
           name: 6
         }
       }
-      const initialItem = [{
+      const initialItem = {
         description: '',
         id: 6,
         timestamp: 5,
         isCompleted: false,
         noteID: 1
-      }]
+      }
       const expected = [{
         description: 'New Item Description',
         id: 6,
@@ -233,6 +230,14 @@ describe('noteForm', () => {
       const mockEvent = {
         preventDefault: jest.fn()
       }
+      const initialItem = [{
+        description: 'not empty',
+        id: 6,
+        timestamp: 5,
+        isCompleted: false,
+        noteID: 1
+      }]
+      wrapper.setState({ items: initialItem })
       const expected = true
 
       wrapper.instance().handleSubmit(mockEvent)
@@ -244,6 +249,14 @@ describe('noteForm', () => {
       const mockEvent = {
         preventDefault: jest.fn()
       }
+      const initialItem = [{
+        description: '',
+        id: 6,
+        timestamp: 5,
+        isCompleted: false,
+        noteID: 1
+      }]
+      wrapper.setState({ items: initialItem })
       const expected = true
       wrapper.setProps({ isEdit: true })
       wrapper.instance().handleSubmit(mockEvent)
