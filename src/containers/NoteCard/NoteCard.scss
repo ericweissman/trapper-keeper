@@ -13,6 +13,7 @@ a {
   h2 {
     font-family: $font-primary;
     color: $primary-dark;
+    overflow-wrap: break-word;
   }
 }
 
