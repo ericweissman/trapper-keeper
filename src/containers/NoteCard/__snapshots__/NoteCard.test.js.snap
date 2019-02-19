@@ -5,20 +5,26 @@ exports[`NoteCard should match the snapshot 1`] = `
   replace={false}
   to="/notes/"
 >
-  <div>
-    <h2>
+  <div
+    className="card"
+  >
+    <h2
+      className="card-title"
+    >
       Title One
     </h2>
-    <div>
-      incomplete
+    <div
+      className="incomplete-items"
+    >
       <p
         key="2"
       >
         Note two of Title one
       </p>
     </div>
-    <div>
-      Completed
+    <div
+      className="complete-items"
+    >
       <p
         key="1"
       >

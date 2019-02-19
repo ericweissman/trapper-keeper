@@ -1,3 +1,9 @@
 @import './variables';
 @import './containers/NoteCard/NoteCard.scss';
 @import './containers/App/App.scss';
+@import './components/Header/Header.scss';
+
+* {
+  box-sizing: border-box;
+  margin: 0
+}
