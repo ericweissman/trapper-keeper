@@ -24,27 +24,39 @@ export class NoteForm extends Component {
     }
   }
 
-  componentDidMount = () => {
-    !this.props.isEdit && this.setState({
-      items: [{ id: shortID.generate(), description: '', noteID: this.state.note.id, timestamp: Date.now(), isCompleted: false }]
-    })
-  }
-
   handleTitleChange = (e) => {
     const { value } = e.target
     const { id, timestamp } = this.state.note
-    this.setState({ note: { title: value, id, timestamp } })
+    let items = this.state.items;
+    
+    if (value !== '') items = [this.addNewBlankItem()]
+    
+    this.setState({ note: { title: value, id, timestamp }, items })
+  }
+
+  addNewBlankItem = () => {
+    const { id } = this.state.note;
+    return { id: shortID.generate(), description: '', noteID: id, timestamp: Date.now(), isCompleted: false }
   }
 
   handleItemChange = (e) => {
-    const { name, value } = e.target
-    const { items } = this.state
-    const newItems = items.map(item => {
+    const { name, value } = e.target;
+    const { items } = this.state;
+    
+    const updatedItems = items.map(item => {
       if (item.id === name) {
         item.description = value
       }
       return item
     })
+    let newItems;
+
+    if (items[items.length - 1].description !== '') {
+      newItems = [...items, this.addNewBlankItem()]
+    } else {
+      newItems = updatedItems
+    }
+    
     this.setState({ items: newItems })
   }
 
@@ -57,12 +69,6 @@ export class NoteForm extends Component {
       return item
     })
     this.setState({ items: newItems })
-  }
-
-  handleAddItem = (e) => {
-    e.preventDefault()
-    const { items, note } = this.state;
-    this.setState({ items: [...items, { id: shortID.generate(), description: '', noteID: note.id, timestamp: Date.now(), isCompleted: false }] })
   }
 
   handleSubmit = (e) => {
@@ -113,7 +119,6 @@ export class NoteForm extends Component {
             } else return null
           })
         }
-        <div onClick={this.handleAddItem}>Add Item</div>
         <section>
           {
             items.map((item) => {
