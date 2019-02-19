@@ -1,7 +1,66 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NoteArea should match the snapshot 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
+<Masonry
+  breakpointCols={
+    Object {
+      "1100": 3,
+      "500": 1,
+      "700": 2,
+      "default": 4,
+    }
+  }
+  className="note-area-grid"
+  columnClassName="note-area-grid_column"
+>
+  <NoteCard
+    id={2}
+    key="2"
+    noteItems={
+      Array [
+        Object {
+          "description": "Note one of Title two",
+          "id": 1,
+          "noteID": 2,
+        },
+        Object {
+          "description": "Note two of Title two",
+          "id": 2,
+          "noteID": 2,
+        },
+      ]
+    }
+    title="Title Two"
+  />
+  <NoteCard
+    id={1}
+    key="1"
+    noteItems={
+      Array [
+        Object {
+          "description": "Note one of Title one",
+          "id": 1,
+          "noteID": 1,
+        },
+        Object {
+          "description": "Note two of Title one",
+          "id": 2,
+          "noteID": 1,
+        },
+        Object {
+          "description": "Note three of Title one",
+          "id": 3,
+          "noteID": 1,
+        },
+      ]
+    }
+    title="Title One"
+  />
+</Masonry>
+`;
+
+exports[`NoteArea should match the snapshot if the notes are still loading 1`] = `
+<div>
+  ...Loading
+</div>
 `;
