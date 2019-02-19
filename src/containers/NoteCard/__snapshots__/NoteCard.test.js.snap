@@ -3,7 +3,7 @@
 exports[`NoteCard should match the snapshot 1`] = `
 <Link
   replace={false}
-  to="/notes/"
+  to="/notes/undefined"
 >
   <div
     className="card"
@@ -18,7 +18,6 @@ exports[`NoteCard should match the snapshot 1`] = `
     >
       <IncompleteItem
         description="Note two of Title one"
-
         key="2"
       />
     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import NoteCard from './NoteCard';
+import { NoteCard } from './NoteCard';
 import { shallow } from 'enzyme';
 
 describe('NoteCard', () => {
