@@ -72,7 +72,7 @@ describe('App', () => {
 
     it('should render the NoteForm container when a valid note is searched', () => {
 
-      const mockNotes = [{ id: 1, title: "Title One" }, { id: 2, title: "Title Two" }]
+      const mockNotes = [{ id: '1', title: "Title One" }, { id: '2', title: "Title Two" }]
       const mockItems = [{ description: 'Note one of Title one', noteID: 1, id: 1 }, { description: 'Note two of Title one', noteID: 1, id: 2 }, { description: 'Note three of Title one', noteID: 1, id: 3 },
       { description: 'Note one of Title two', noteID: 2, id: 1 }, { description: 'Note two of Title two', noteID: 2, id: 2 }]
       const fetchNotes = jest.fn()
@@ -88,7 +88,7 @@ describe('App', () => {
 
     it("should render the NotFound component when a note doesn't exist", () => {
 
-      const mockNotes = [{ id: 1, title: "Title One" }, { id: 2, title: "Title Two" }]
+      const mockNotes = [{ id: '1', title: "Title One" }, { id: '2', title: "Title Two" }]
       const mockItems = [{ description: 'Note one of Title one', noteID: 1, id: 1 }, { description: 'Note two of Title one', noteID: 1, id: 2 }, { description: 'Note three of Title one', noteID: 1, id: 3 },
       { description: 'Note one of Title two', noteID: 2, id: 1 }, { description: 'Note two of Title two', noteID: 2, id: 2 }]
       const fetchNotes = jest.fn()
