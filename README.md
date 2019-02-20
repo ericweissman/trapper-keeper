@@ -23,6 +23,7 @@ This application was our first attempt at creating and managing a backend to sup
 - SCSS
 - Jest
 - Enzyme
+- Masonry
 
 
 ## Primary Technologies Used - Back End
