@@ -1,8 +1,3 @@
-//add note
-//remove note
-//edit a note
-
-//Synchronous Actions
 
 export const isLoading = (bool) => ({
   type: 'IS_LOADING',
@@ -14,14 +9,12 @@ export const hasErrored = (message) => ({
   message
 });
 
-//GET n SET ALL NOTES
 export const getNotesSuccess = ({ notes, items }) => ({
   type: 'GET_NOTES_SUCCESS',
   notes,
   items,
 })
 
-//ADD NOTE
 export const postNoteSuccess = ({ id, title, items }) => ({
   type: 'POST_NOTE_SUCCESS',
   note: {
@@ -31,13 +24,11 @@ export const postNoteSuccess = ({ id, title, items }) => ({
   items,
 })
 
-//DELETE NOTE
 export const deleteNoteSuccess = (id) => ({
   type: 'DELETE_NOTE_SUCCESS',
   id
 })
 
-//EDIT NOTE
 export const editNoteSuccess = ({ id, title, items }) => ({
   type: 'EDIT_NOTE_SUCCESS',
   note: {
