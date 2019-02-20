@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import NoteCard from '../NoteCard/NoteCard'
+import NoteCard from '../../components/NoteCard/NoteCard'
 import NoCards from '../../components/NoCards/NoCards'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
@@ -8,8 +8,6 @@ import Loading from '../../components/Loading/Loading'
 import '../../Main.scss'
 
 export class NoteArea extends Component {
-
-
 
   render() {
     const { items, notes, isLoading } = this.props
@@ -20,28 +18,26 @@ export class NoteArea extends Component {
       700: 2,
       500: 1
     };
-
     const noteCards = notes.map(note => {
       const noteItems = items.filter(item => item.noteID === note.id)
-      return <NoteCard {...note} noteItems={noteItems} key={note.id}/>
+      return <NoteCard {...note} noteItems={noteItems} key={note.id} />
     }).reverse()
 
     switch (isLoading) {
       case true:
         return <Loading />
       default:
-      if(noteCards.length === 0) {
-        return <NoCards />
-      } else {
-        return (
-          <Masonry breakpointCols={breakpointColumnsObj}
-            className="note-area-grid"
-            columnClassName="note-area-grid_column">
-            {noteCards}
-          </Masonry>
-        )
-
-      }
+        if (noteCards.length === 0) {
+          return <NoCards />
+        } else {
+          return (
+            <Masonry breakpointCols={breakpointColumnsObj}
+              className="note-area-grid"
+              columnClassName="note-area-grid_column">
+              {noteCards}
+            </Masonry>
+          )
+        }
     }
   }
 }

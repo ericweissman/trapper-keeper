@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import addbtnWhite from '../../images/addbtn.svg'
 
 const Header = (props) => {
-  const {isLoading} = props
-  return(
+  const { isLoading } = props
+  return (
     <header>
       <h1>TrapperKeeper</h1>
       {
