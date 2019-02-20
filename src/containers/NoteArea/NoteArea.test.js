@@ -38,6 +38,21 @@ describe('NoteArea', () => {
 
   })
 
+  it('should match the snapshot if the notes loaded but there are none to display', () => {
+    //setup
+    const mockItems = []
+    const mockNotes = []
+    const isLoading = false
+    wrapper = shallow(<NoteArea
+      isLoading={isLoading}
+      items={mockItems}
+      notes={mockNotes}
+    />)
+    //expectation
+    expect(wrapper).toMatchSnapshot()
+
+  })
+
   describe('mapStateToProps', () => {
 
     it('should return an object with a notes array and items array', () => {

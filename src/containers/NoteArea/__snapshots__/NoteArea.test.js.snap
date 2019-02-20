@@ -60,3 +60,5 @@ exports[`NoteArea should match the snapshot 1`] = `
 `;
 
 exports[`NoteArea should match the snapshot if the notes are still loading 1`] = `<Loading />`;
+
+exports[`NoteArea should match the snapshot if the notes loaded but there are none to display 1`] = `<NoCards />`;
