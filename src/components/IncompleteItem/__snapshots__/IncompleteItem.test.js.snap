@@ -4,9 +4,6 @@ exports[`IncompleteItem should have match the correct snapshot 1`] = `
 <div
   className="incomplete"
 >
-  <img
-    src="unchecked.svg"
-  />
   <p />
 </div>
 `;

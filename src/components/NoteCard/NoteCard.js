@@ -9,7 +9,7 @@ export class NoteCard extends Component {
   render() {
     const incomplete = this.props.noteItems.map((item) => {
       if (!item.isCompleted) {
-        return <IncompleteItem key={item.id} description={item.description}/>
+        return <IncompleteItem key={item.id} description={item.description} />
       } else return []
     })
     const complete = this.props.noteItems.map((item) => {

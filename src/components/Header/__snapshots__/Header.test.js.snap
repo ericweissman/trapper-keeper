@@ -10,6 +10,7 @@ exports[`Header should have match the correct snapshot 1`] = `
     to="/new-note"
   >
     <img
+      alt="White add button"
       src="addbtn.svg"
     />
     <p>
