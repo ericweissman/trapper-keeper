@@ -13,7 +13,6 @@ export const deleteNote = (url, id) => {
         throw Error(response.statusText)
       }
       dispatch(isLoading(false))
-      // await response.json()
       dispatch(deleteNoteSuccess(id))
     } catch (error) {
       dispatch(hasErrored(error.message))
